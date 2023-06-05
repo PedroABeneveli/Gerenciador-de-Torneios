@@ -19,6 +19,7 @@ public class Torneio {
     private Date DataDeRealizacao;
     private ArrayList<String> formato;
     private int numeroDeEtapas;
+    private boolean ativo;
     private Jogo jogo;
     private ArrayList<Equipe> equipes;
     private ArrayList<Partida> partidas;
@@ -28,13 +29,14 @@ public class Torneio {
         
     } 
     
-    public Torneio(String nome, int numeroDeEquipes, boolean temEquipes, Date DataDeRealizacao, ArrayList<String> formato, int numeroDeEtapas, Jogo jogo, ArrayList<Equipe> equipes, ArrayList<Partida> partidas) {
+    public Torneio(String nome, int numeroDeEquipes, boolean temEquipes, Date DataDeRealizacao, ArrayList<String> formato, int numeroDeEtapas, boolean ativo, Jogo jogo, ArrayList<Equipe> equipes, ArrayList<Partida> partidas) {
         this.nome = nome;
         this.numeroDeEquipes = numeroDeEquipes;
         this.temEquipes = temEquipes;
         this.DataDeRealizacao = DataDeRealizacao;
         this.formato = formato;
         this.numeroDeEtapas = numeroDeEtapas;
+        this.ativo = ativo;
         this.jogo = jogo;
         this.equipes = equipes;
         this.partidas = partidas;
@@ -88,6 +90,14 @@ public class Torneio {
         this.numeroDeEtapas = numeroDeEtapas;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+    
     public Jogo getJogo() {
         return jogo;
     }
