@@ -12,37 +12,35 @@ import java.util.Date;
  *
  * @author gustavo
  */
-public class Jogador  extends Pessoa {
+public class Jogador extends Pessoa {
     private String username;
     private boolean freeAgent;
     private boolean tecnico;
     private ArrayList<Integer> numeroVitoriasDerrotas;
     private String ranqueamento;
-    private ArrayList<Equipe> equipe;
+    private ArrayList<Equipe> equipes;
+    private ArrayList<Torneio> torneiosAnteriores;
+    
 
     public Jogador() {
     }
 
-    public Jogador(String username, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipe) {
-        this.username = username;
-        this.freeAgent = freeAgent;
-        this.tecnico = tecnico;
-        this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
-        this.ranqueamento = ranqueamento;
-        this.equipe = equipe;
-    }
-
-    public Jogador(String username, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipe, String nome, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
+    public Jogador(String username, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes, String nome, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
         super(nome, email, CPF, dataDeNascimento, endereco, senha);
         this.username = username;
         this.freeAgent = freeAgent;
         this.tecnico = tecnico;
         this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
         this.ranqueamento = ranqueamento;
-        this.equipe = equipe;
+        this.equipes = equipes;
+    }
+    
+    public void atualizarDados(Torneio torneio, Equipe equipe) {
+        this.torneiosAnteriores.add(torneio);
+        this.equipes.add(equipe);
     }
 
-    public double calcularRazaoKillDeath() {
+    public double calcularRazaoVitoriasDerrotas() {
         return numeroVitoriasDerrotas.get(0) / numeroVitoriasDerrotas.get(1);
     }
 
@@ -86,12 +84,12 @@ public class Jogador  extends Pessoa {
         this.ranqueamento = ranqueamento;
     }
 
-    public ArrayList<Equipe> getEquipe() {
-        return equipe;
+    public ArrayList<Equipe> getEquipes() {
+        return equipes;
     }
 
-    public void setEquipe(ArrayList<Equipe> equipe) {
-        this.equipe = equipe;
+    public void setEquipes(ArrayList<Equipe> equipes) {
+        this.equipes = equipes;
     }
     
     
