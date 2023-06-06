@@ -32,7 +32,7 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        scrTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Jogos", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
+        scrTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Organizadores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
         tblOrganizadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
