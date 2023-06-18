@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package Classes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,11 +20,34 @@ public class Organizador extends Pessoa {
     public Organizador() {
     }
 
-    public Organizador(double nota, ArrayList<Torneio> torneiosCriados, Torneio torneio, String nome, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
+    public Organizador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, double nota, ArrayList<Torneio> torneiosCriados, Torneio torneio) {
         super(nome, email, CPF, dataDeNascimento, endereco, senha);
+        this.username = username;
         this.nota = nota;
         this.torneiosCriados = torneiosCriados;
         this.torneio = torneio;
+    }
+    
+    public Organizador(String nome, String CPF, Date dataDeNascimento, String endereco, double nota, ArrayList<Torneio> torneiosCriados, Torneio torneio) {
+        super(nome, CPF, dataDeNascimento, endereco);
+        this.nota = nota;
+        this.torneiosCriados = torneiosCriados;
+        this.torneio = torneio;
+    }
+    
+    @Override
+    public void criarLogin(String login) {
+        this.username = login;
+    }
+    
+    @Override
+    public void criarSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public void informarEmailContato(String email) {
+        this.email = email;
     }
     
     public void finalizarTorneio() {
