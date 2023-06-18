@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package Classes;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +13,6 @@ import java.util.Date;
  * @author gustavo
  */
 public class Jogador extends Pessoa {
-    private String username;
     private boolean freeAgent;
     private boolean tecnico;
     private ArrayList<Integer> numeroVitoriasDerrotas;
@@ -25,7 +24,7 @@ public class Jogador extends Pessoa {
     public Jogador() {
     }
 
-    public Jogador(String username, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes, String nome, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
+    public Jogador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes) {
         super(nome, email, CPF, dataDeNascimento, endereco, senha);
         this.username = username;
         this.freeAgent = freeAgent;
@@ -33,6 +32,32 @@ public class Jogador extends Pessoa {
         this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
         this.ranqueamento = ranqueamento;
         this.equipes = equipes;
+    }
+    
+    public Jogador(String nome, String CPF, Date dataDeNascimento, String endereco, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes, ArrayList<Torneio> torneiosAnteriores) {
+        super(nome, CPF, dataDeNascimento, endereco);
+        this.freeAgent = freeAgent;
+        this.tecnico = tecnico;
+        this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
+        this.ranqueamento = ranqueamento;
+        this.equipes = equipes;
+        this.torneiosAnteriores = torneiosAnteriores;
+    }
+    
+    
+    @Override
+    public void criarLogin(String login) {
+        this.username = login;
+    }
+    
+    @Override
+    public void criarSenha(String senha) {
+        this.senha = senha;
+    }
+
+    @Override
+    public void informarEmailContato(String email) {
+        this.email = email;
     }
     
     public void atualizarDados(Torneio torneio, Equipe equipe) {
