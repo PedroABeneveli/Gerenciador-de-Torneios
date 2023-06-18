@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package classes;
+package Classes;
 
 import java.util.Date;
 
@@ -11,8 +11,9 @@ import java.util.Date;
  *
  * @author gustavo
  */
-public class Pessoa {
+public abstract class Pessoa {
     protected String nome;
+    protected String username;
     protected String email;
     protected String CPF;
     protected Date dataDeNascimento;
@@ -31,6 +32,19 @@ public class Pessoa {
         this.endereco = endereco;
         this.senha = senha;
     }
+    
+    public Pessoa(String nome, String CPF, Date dataDeNascimento, String endereco) {
+        this.nome = nome;
+        this.CPF = CPF;
+        this.dataDeNascimento = dataDeNascimento;
+        this.endereco = endereco;
+    }
+    
+    public abstract void criarLogin(String login);
+    
+    public abstract void criarSenha(String senha);
+    
+    public abstract void informarEmailContato(String email);
 
     public String getNome() {
         return nome;
