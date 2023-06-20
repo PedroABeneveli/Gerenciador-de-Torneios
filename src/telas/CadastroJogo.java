@@ -46,15 +46,15 @@ public class CadastroJogo extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(53, 53, 53));
         jPanel1.setMinimumSize(new java.awt.Dimension(800, 500));
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Cadastrar Jogo");
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Nome:");
 
         jTextField1.setBackground(new java.awt.Color(255, 255, 255));
@@ -67,7 +67,7 @@ public class CadastroJogo extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Criadora:");
 
         jTextField2.setBackground(new java.awt.Color(255, 255, 255));
@@ -80,7 +80,7 @@ public class CadastroJogo extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Publicadora:");
 
         jTextField3.setBackground(new java.awt.Color(255, 255, 255));
@@ -93,11 +93,11 @@ public class CadastroJogo extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Data de lançamento:");
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Mapas:");
 
         jTextField5.setBackground(new java.awt.Color(255, 255, 255));
@@ -110,7 +110,7 @@ public class CadastroJogo extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Condição de vitória:");
 
         jTextField6.setBackground(new java.awt.Color(255, 255, 255));
@@ -154,7 +154,7 @@ public class CadastroJogo extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,9 +217,9 @@ public class CadastroJogo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(106, 106, 106)
+                .addGap(250, 250, 250)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 725, Short.MAX_VALUE))
+                .addContainerGap(847, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
