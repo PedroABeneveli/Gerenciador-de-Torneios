@@ -1,20 +1,53 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
-/**
- *
- * @author pedro
- */
-public class MostrarTorneio extends javax.swing.JFrame {
+import classes.Torneio;
+import java.util.Date;
 
-    /**
-     * Creates new form MostrarTorneio
-     */
+public class MostrarTorneio extends javax.swing.JFrame {
+    
+    private Torneio torneioAtual;
+    
     public MostrarTorneio() {
         initComponents();
+        
+        torneioAtual = BuscaTorneios.torneioSelecionado;
+        
+        // Coloca os dados do torneio nos campos de texto
+        this.setTitle(torneioAtual.getNome());
+        lblNomeTorneio.setText(torneioAtual.getNome());
+        txtNumEquipes.setText("" + torneioAtual.getNumeroDeEquipes());      // transforma int em string
+        frmData.setText(formatarData(torneioAtual.getDataDeRealizacao()));
+        if (torneioAtual.isAtivo()) {
+            txtVencedor.setText("A Definir");
+            lblAcontecendo.setVisible(true);
+        } else {
+            txtVencedor.setText(torneioAtual.vencedor().getNome());
+            lblAcontecendo.setVisible(false);
+        }
+        txtJogo.setText(torneioAtual.getJogo().getNome());
+        
+        montarTabelas(true, true);
+        
+        setTxtFields(false);
+    
+    }
+    
+    // formata o toString do date pra uma string que colocamos no fmrData
+    private String formatarData(Date data) {
+        // TODO
+        return "";
+    }
+    
+    // monta as tabelas, se eh pra montar passa o argumento como true
+    private void montarTabelas(boolean tabelaEquipe, boolean tabelaPartida) {
+        //TODO
+    }
+    
+    private void setTxtFields (boolean estado) {
+        txtJogo.setEnabled(estado);
+        txtNumEquipes.setEnabled(estado);
+        txtVencedor.setEnabled(estado);
+        frmData.setEnabled(estado);
     }
 
     /**
@@ -47,6 +80,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
         lblAcontecendo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Torneio");
 
         lblNomeTorneio.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblNomeTorneio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png"))); // NOI18N
@@ -273,4 +307,5 @@ public class MostrarTorneio extends javax.swing.JFrame {
     private javax.swing.JTextField txtNumEquipes;
     private javax.swing.JTextField txtVencedor;
     // End of variables declaration//GEN-END:variables
+
 }

@@ -42,6 +42,12 @@ public class Torneio {
         this.partidas = partidas;
     }
 
+    // percorre as equipes e determina qual eh a com colocacao 1
+    public Equipe vencedor() {
+        // TODO
+        return null;
+    }
+    
     public String getNome() {
         return nome;
     }

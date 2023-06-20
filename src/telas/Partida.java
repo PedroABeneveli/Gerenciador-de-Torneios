@@ -48,7 +48,7 @@ public class Partida extends javax.swing.JFrame {
         lblVitEquipe2 = new javax.swing.JLabel();
         sprLinha1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaResultados = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -187,9 +187,9 @@ public class Partida extends javax.swing.JFrame {
         lblVitEquipe2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblVitEquipe2.setText("Vitória Equipe 1!!");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaResultados.setColumns(20);
+        txaResultados.setRows(5);
+        jScrollPane1.setViewportView(txaResultados);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/stats_15267.png"))); // NOI18N
         jButton1.setText("Reportar Resultados");
@@ -292,7 +292,6 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JButton btnSair;
     private javax.swing.JButton jButton1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblEquipe1;
     private javax.swing.JLabel lblEquipe2;
     private javax.swing.JLabel lblJogadoresEquipe1;
@@ -313,5 +312,6 @@ public class Partida extends javax.swing.JFrame {
     private javax.swing.JScrollPane scrPersonagensEquipe1;
     private javax.swing.JScrollPane scrPersonagensEquipe2;
     private javax.swing.JSeparator sprLinha1;
+    private javax.swing.JTextArea txaResultados;
     // End of variables declaration//GEN-END:variables
 }

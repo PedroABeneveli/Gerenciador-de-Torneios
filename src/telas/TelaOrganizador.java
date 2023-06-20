@@ -36,6 +36,7 @@ public class TelaOrganizador extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Organizador");
         setSize(new java.awt.Dimension(800, 500));
 
         lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
@@ -119,6 +120,7 @@ public class TelaOrganizador extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCriarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarTorneioActionPerformed

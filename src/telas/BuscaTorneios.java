@@ -4,12 +4,16 @@
  */
 package telas;
 
+import classes.Torneio;
+
 /**
  *
  * @author pedro
  */
 public class BuscaTorneios extends javax.swing.JFrame {
 
+    public static Torneio torneioSelecionado;
+    
     /**
      * Creates new form ListagemTorneios
      */

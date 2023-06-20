@@ -36,6 +36,7 @@ public class TelaJogador extends javax.swing.JFrame {
         btnEquipes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Jogador");
 
         btnProcurarTorneio.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         btnProcurarTorneio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tournament_challenge_icon_251769.png"))); // NOI18N
@@ -137,6 +138,7 @@ public class TelaJogador extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnProcurarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarTorneioActionPerformed

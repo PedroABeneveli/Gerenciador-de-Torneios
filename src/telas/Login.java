@@ -1,7 +1,11 @@
 package telas;
 
-public class Login extends javax.swing.JFrame {
+import classes.Pessoa;
 
+public class Login extends javax.swing.JFrame {
+    
+    public static Pessoa usuarioLogado;
+    
     /**
      * Creates new form Login
      */
