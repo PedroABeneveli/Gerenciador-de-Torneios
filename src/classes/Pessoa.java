@@ -5,13 +5,14 @@
  */
 package classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  *
  * @author gustavo
  */
-public abstract class Pessoa {
+public abstract class Pessoa implements Serializable {
     protected String nome;
     protected String username;
     protected String email;

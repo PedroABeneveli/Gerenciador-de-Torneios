@@ -1,16 +1,83 @@
 package telas;
 
 import classes.Pessoa;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.math.BigInteger;
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     
     public static Pessoa usuarioLogado;
+    // tabela hash que contem como chave o nome do usuario
+    // e o valor é o objeto Pessoa, que tem o atributo senha, que ja eh a criptografia da concatenacao de ususaario e senha
+    private HashMap<String, Pessoa> hashUsuarios = new HashMap<>();
     
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
+        
+        resetTela();
+        
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            hashUsuarios = (HashMap<String, Pessoa>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+        }
+        
+    }
+    
+    private String criptografa(String palavra) {
+        String cript;
+        try {
+            // define o tipo de criptografia utilizada
+            MessageDigest mesDig = MessageDigest.getInstance("SHA-256");
+            
+            // criptografa a string dada
+            byte[] seqBytesCrip = mesDig.digest(palavra.getBytes(StandardCharsets.UTF_8));
+            
+            // pega a sequencia de bytes e transforma em uma string dos bytes em base hexadecimal
+            cript = new BigInteger(1, seqBytesCrip).toString(16);
+            
+        } catch (NoSuchAlgorithmException erro) {
+            System.out.println("Erro de algoritmo errado");
+            cript = "erro";
+        }
+        
+        return cript;
+    }
+    
+    // inicializa as caixas de texto sem texto e habilita os btns e caixas de texto
+    private void resetTela() {
+        txtUsuario.setText("");
+        pswSenha.setText("");
+        
+        btnCadastro.setEnabled(true);
+        btnLogin.setEnabled(true);
+        txtUsuario.setEnabled(true);
+        pswSenha.setEnabled(true);
     }
 
     /**
@@ -41,6 +108,11 @@ public class Login extends javax.swing.JFrame {
 
         btnLogin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/enter32px.png"))); // NOI18N
         btnLogin.setText("Entrar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -82,6 +154,11 @@ public class Login extends javax.swing.JFrame {
         lblTitulo.setText("Gerenciador de Torneios");
 
         btnCadastro.setText("Cadastrar novo Usuário");
+        btnCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -111,6 +188,23 @@ public class Login extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        new CadastroInicial().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnCadastroActionPerformed
+
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
+        if (hashUsuarios.containsKey(txtUsuario.getText())) {
+            // teste pra ver se eh admin
+            if (txtUsuario.equals("Administrador") && String.valueOf(pswSenha.getPassword()).equals("12345")) {
+                
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Nome de usuário inexistente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            resetTela();
+        }
+    }//GEN-LAST:event_btnLoginActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

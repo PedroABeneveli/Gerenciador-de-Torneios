@@ -1,5 +1,7 @@
 package telas;
 
+import classes.Organizador;
+import classes.Jogador;
 import classes.Torneio;
 import java.util.Date;
 
@@ -20,15 +22,30 @@ public class MostrarTorneio extends javax.swing.JFrame {
         if (torneioAtual.isAtivo()) {
             txtVencedor.setText("A Definir");
             lblAcontecendo.setVisible(true);
+            
+            btnAvaliacao.setEnabled(false);
+            btnAvaliacao.setVisible(false);
         } else {
             txtVencedor.setText(torneioAtual.vencedor().getNome());
             lblAcontecendo.setVisible(false);
+            // esse botão so deve aparecer se acabou o torneio
+            btnAvaliacao.setEnabled(true);
         }
         txtJogo.setText(torneioAtual.getJogo().getNome());
         
         montarTabelas(true, true);
         
         setTxtFields(false);
+        
+        if (Login.usuarioLogado instanceof Organizador) {
+            btnInscricaoEdicao.setText("Editar");
+            btnInscricaoEdicao.setEnabled(true);
+            
+            btnAvaliacao.setEnabled(false);
+            btnAvaliacao.setVisible(false);
+        } else {
+            // Logica pra ver se o usuario ja ta inscrito no torneio
+        }
     
     }
     
@@ -73,7 +90,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
         txtNumEquipes = new javax.swing.JTextField();
         frmData = new javax.swing.JFormattedTextField();
         btnAvaliacao = new javax.swing.JButton();
-        btnInscricao = new javax.swing.JButton();
+        btnInscricaoEdicao = new javax.swing.JButton();
         txtVencedor = new javax.swing.JTextField();
         lblJogo = new javax.swing.JLabel();
         txtJogo = new javax.swing.JTextField();
@@ -154,8 +171,8 @@ public class MostrarTorneio extends javax.swing.JFrame {
         btnAvaliacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/avaliacao32px.png"))); // NOI18N
         btnAvaliacao.setText("Avaliação");
 
-        btnInscricao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        btnInscricao.setText("Inscreva-se!");
+        btnInscricaoEdicao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        btnInscricaoEdicao.setText("Inscreva-se!");
 
         lblJogo.setText("Jogo:");
 
@@ -201,7 +218,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnAvaliacao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInscricao, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnInscricaoEdicao, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(47, 47, 47)
                         .addComponent(btnSair)))
                 .addContainerGap())
@@ -242,7 +259,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnSair, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnInscricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(btnInscricaoEdicao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(btnAvaliacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -288,7 +305,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvaliacao;
-    private javax.swing.JButton btnInscricao;
+    private javax.swing.JButton btnInscricaoEdicao;
     private javax.swing.JButton btnSair;
     private javax.swing.JFormattedTextField frmData;
     private javax.swing.JLabel lblAcontecendo;
