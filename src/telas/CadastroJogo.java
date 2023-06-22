@@ -5,12 +5,19 @@
  */
 package telas;
 
+import classes.Jogo;
+import java.awt.List;
+import java.text.SimpleDateFormat;  
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date; 
 /**
  *
  * @author gustavo
  */
 public class CadastroJogo extends javax.swing.JFrame {
-
+    
+    private Jogo jogo;
     /**
      * Creates new form CadastroJogo
      */
@@ -73,6 +80,11 @@ public class CadastroJogo extends javax.swing.JFrame {
 
         btnFinalizarCadastro.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnFinalizarCadastro.setText("Finalizar Cadastro");
+        btnFinalizarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnFinalizarCadastroActionPerformed(evt);
+            }
+        });
 
         btnCancelarCadastro.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnCancelarCadastro.setText("Cancelar");
@@ -150,6 +162,52 @@ public class CadastroJogo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnFinalizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCadastroActionPerformed
+        jogo = new Jogo();
+        
+        if (!txtNome.getText().isBlank()) {
+            this.jogo.setNome(txtNome.getText());
+        } else {
+            //
+        }
+        
+        if (!txtCriadora.getText().isBlank()) {
+            this.jogo.setCriadora(txtCriadora.getText());
+        } else {
+            //
+        }
+        
+        if (!txtPublicadora.getText().isBlank()) {
+            this.jogo.setPublicadora(txtPublicadora.getText());
+        } else {
+            //
+        }
+        
+        if (!frmDataDePublicação.getText().isBlank()) {
+            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDePublicação.getText());
+            this.jogo.setDataDeCriacao(data);
+        } else {
+            //
+        }
+        
+        if (!txtCondicaoDeVitoria.getText().isBlank()) {
+            this.jogo.setCondicaoVitoria(txtCondicaoDeVitoria.getText());
+        } else {
+            //
+        }
+        
+        if (!txaMapas.getText().isBlank()) {
+            String[] strArray = txaMapas.getText().split("\n");
+            List<String> strList;
+            strList = Arrays.asList(strArray);
+            
+            ArrayList<String> mapas = new ArrayList<String>(strList);
+            this.jogo.setMapas(mapas);
+        } else {
+            //
+        }
+    }//GEN-LAST:event_btnFinalizarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
