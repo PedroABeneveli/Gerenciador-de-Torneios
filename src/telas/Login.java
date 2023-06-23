@@ -1,13 +1,13 @@
 package telas;
 
+import classes.Jogador;
+import classes.Organizador;
 import classes.Pessoa;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -89,7 +89,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlDados = new javax.swing.JPanel();
         lblUsuario = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
@@ -100,7 +100,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        pnlDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         lblUsuario.setText("Usuário");
 
@@ -114,28 +114,28 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlDadosLayout = new javax.swing.GroupLayout(pnlDados);
+        pnlDados.setLayout(pnlDadosLayout);
+        pnlDadosLayout.setHorizontalGroup(
+            pnlDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnlDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtUsuario)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlDadosLayout.createSequentialGroup()
+                        .addGroup(pnlDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblUsuario)
                             .addComponent(lblSenha))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addComponent(pswSenha)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDadosLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnLogin)))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlDadosLayout.setVerticalGroup(
+            pnlDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblUsuario)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -168,7 +168,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(pnlDados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 202, Short.MAX_VALUE))
                     .addComponent(btnCadastro))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -179,7 +179,7 @@ public class Login extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblTitulo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(pnlDados, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCadastro)
                 .addContainerGap())
@@ -191,17 +191,52 @@ public class Login extends javax.swing.JFrame {
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
         new CadastroInicial().setVisible(true);
+        // retiramos essa tela pra garantir que o usuario nao vai logar com uma outra tela aberta
         this.dispose();
     }//GEN-LAST:event_btnCadastroActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         if (hashUsuarios.containsKey(txtUsuario.getText())) {
+            // desabilita os btns e caixas de texto pro usuario nao mexer nelas quando tiver um JOptionPane
+            btnCadastro.setEnabled(false);
+            btnLogin.setEnabled(false);
+            txtUsuario.setEnabled(false);
+            pswSenha.setEnabled(false);
+            
             // teste pra ver se eh admin
             if (txtUsuario.equals("Administrador") && String.valueOf(pswSenha.getPassword()).equals("12345")) {
+                new Admin().setVisible(true);
+                this.dispose();
+            // verificacao da senha de organizador ou jogador
+            } else {
+                Pessoa user = hashUsuarios.get(txtUsuario.getText());
                 
+                // juntamos o nome de usuario com a senha pra verificar se a codificacao eh igual
+                String chave = txtUsuario.getText() + String.valueOf(pswSenha.getPassword());
+                String senhaCriptografada = criptografa(chave);
+                
+                if (senhaCriptografada.equals(user.getSenha())) {
+                    if (user instanceof Jogador) {
+                        JOptionPane.showMessageDialog(null, "Jogador logado com sucesso.", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+                        // salva o usuario que realizou o login
+                        usuarioLogado = user;
+                        // retira essa tela e inicializa a tela principal
+                        new TelaJogador().setVisible(true);
+                        this.dispose();
+                    } else if (user instanceof Organizador) {
+                        JOptionPane.showMessageDialog(null, "Organizador logado com sucesso.", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+                        // salva o usuario que realizou o login
+                        usuarioLogado = user;
+                        // retira essa tela e inicializa a tela principal
+                        new TelaOrganizador().setVisible(true);
+                        this.dispose();
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Senha incorreta.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Nome de usuário inexistente.", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Usuário não cadastrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
             resetTela();
         }
     }//GEN-LAST:event_btnLoginActionPerformed
@@ -241,10 +276,10 @@ public class Login extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnCadastro;
     private javax.swing.JButton btnLogin;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JLabel lblUsuario;
+    private javax.swing.JPanel pnlDados;
     private javax.swing.JPasswordField pswSenha;
     private javax.swing.JTextField txtUsuario;
     // End of variables declaration//GEN-END:variables
