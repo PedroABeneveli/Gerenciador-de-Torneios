@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date; 
+import javax.swing.JOptionPane;
 /**
  *
  * @author gustavo
@@ -88,6 +89,11 @@ public class CadastroJogo extends javax.swing.JFrame {
 
         btnCancelarCadastro.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnCancelarCadastro.setText("Cancelar");
+        btnCancelarCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCadastroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -169,24 +175,28 @@ public class CadastroJogo extends javax.swing.JFrame {
         if (!txtNome.getText().isBlank()) {
             this.jogo.setNome(txtNome.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Nome inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
         
         if (!txtCriadora.getText().isBlank()) {
             this.jogo.setCriadora(txtCriadora.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Criadora inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
         
         if (!txtPublicadora.getText().isBlank()) {
             this.jogo.setPublicadora(txtPublicadora.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Publicadora inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
         
         if (!frmDataDePublicação.getText().isBlank()) {
-            Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDePublicação.getText());
-            this.jogo.setDataDeCriacao(data);
+            try {
+                Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDePublicação.getText());
+                this.jogo.setDataDeCriacao(data);
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
             //
         }
@@ -194,20 +204,21 @@ public class CadastroJogo extends javax.swing.JFrame {
         if (!txtCondicaoDeVitoria.getText().isBlank()) {
             this.jogo.setCondicaoVitoria(txtCondicaoDeVitoria.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Condição de vitória inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
         
         if (!txaMapas.getText().isBlank()) {
             String[] strArray = txaMapas.getText().split("\n");
-            List<String> strList;
-            strList = Arrays.asList(strArray);
-            
-            ArrayList<String> mapas = new ArrayList<String>(strList);
+            ArrayList<String> mapas = new ArrayList<String>(Arrays.asList(strArray));
             this.jogo.setMapas(mapas);
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Mapas inválidos!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnFinalizarCadastroActionPerformed
+
+    private void btnCancelarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnCancelarCadastroActionPerformed
 
     /**
      * @param args the command line arguments
