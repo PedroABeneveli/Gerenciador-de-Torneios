@@ -9,6 +9,7 @@ import classes.Jogador;
 import classes.Organizador;
 import java.text.SimpleDateFormat;  
 import java.util.Date;  
+import javax.swing.JOptionPane;
 
 
 /**
@@ -26,7 +27,6 @@ public class CadastroInicial extends javax.swing.JFrame {
     public CadastroInicial() {
         initComponents();
         pnlCadastroJogador.setVisible(false);
-        pnlCadastroOrganizador.setVisible(false);
     }
 
     /**
@@ -38,14 +38,14 @@ public class CadastroInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblCadastro = new javax.swing.JLabel();
-        lblNome = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        lblCPF = new javax.swing.JLabel();
-        lblDataNascimento = new javax.swing.JLabel();
-        lblEndereco = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         txtEndereco = new javax.swing.JTextField();
-        lblUsername = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         btnCadastrarJogador = new javax.swing.JButton();
         btnCadastrarOrganizador = new javax.swing.JButton();
@@ -58,28 +58,23 @@ public class CadastroInicial extends javax.swing.JFrame {
         btnNaoFreeAgent = new javax.swing.JButton();
         btnFinalizarCadastroJogador = new javax.swing.JButton();
         btnCancelarCadastroJogador = new javax.swing.JButton();
-        pnlCadastroOrganizador = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        btnFinalizarCadastroOrganizador = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        btnCancelarCadastroOrganizador = new javax.swing.JButton();
-        lblEmail = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        lblSenha = new javax.swing.JLabel();
-        pswSenha = new javax.swing.JPasswordField();
-        lblConfirmarSenha = new javax.swing.JLabel();
-        pswConfirmaSenha = new javax.swing.JPasswordField();
+        jLabel10 = new javax.swing.JLabel();
+        jpfSenha = new javax.swing.JPasswordField();
+        jLabel11 = new javax.swing.JLabel();
+        jpfConfirmaSenha = new javax.swing.JPasswordField();
         frmDataDeNascimento = new javax.swing.JFormattedTextField();
         frmCPF = new javax.swing.JFormattedTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblCadastro.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
-        lblCadastro.setText("Cadastro Inicial");
+        jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
+        jLabel19.setText("Cadastro Inicial");
 
-        lblNome.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblNome.setText("Nome:");
+        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel1.setText("Nome:");
 
         txtNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,17 +82,17 @@ public class CadastroInicial extends javax.swing.JFrame {
             }
         });
 
-        lblCPF.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblCPF.setText("CPF:");
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel2.setText("CPF:");
 
-        lblDataNascimento.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblDataNascimento.setText("Data de nascimento:");
+        jLabel3.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel3.setText("Data de nascimento:");
 
-        lblEndereco.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblEndereco.setText("Endereço:");
+        jLabel4.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel4.setText("Endereço:");
 
-        lblUsername.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblUsername.setText("Username:");
+        jLabel5.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel5.setText("Username:");
 
         btnCadastrarJogador.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnCadastrarJogador.setText("Cadastrar Jogador");
@@ -172,6 +167,11 @@ public class CadastroInicial extends javax.swing.JFrame {
 
         btnCancelarCadastroJogador.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
         btnCancelarCadastroJogador.setText("Cancelar");
+        btnCancelarCadastroJogador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarCadastroJogadorActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCadastroJogadorLayout = new javax.swing.GroupLayout(pnlCadastroJogador);
         pnlCadastroJogador.setLayout(pnlCadastroJogadorLayout);
@@ -222,68 +222,14 @@ public class CadastroInicial extends javax.swing.JFrame {
                 .addGap(30, 30, 30))
         );
 
-        pnlCadastroOrganizador.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jLabel9.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel9.setText("Email para contato (opcional):");
 
-        jLabel8.setText("Deseja realizar toneios de quais jogos?");
+        jLabel10.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel10.setText("senha:");
 
-        btnFinalizarCadastroOrganizador.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
-        btnFinalizarCadastroOrganizador.setText("Finalizar Cadastro");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Jogo", "Adicionar"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        btnCancelarCadastroOrganizador.setFont(new java.awt.Font("Ubuntu", 0, 16)); // NOI18N
-        btnCancelarCadastroOrganizador.setText("Cancelar");
-
-        javax.swing.GroupLayout pnlCadastroOrganizadorLayout = new javax.swing.GroupLayout(pnlCadastroOrganizador);
-        pnlCadastroOrganizador.setLayout(pnlCadastroOrganizadorLayout);
-        pnlCadastroOrganizadorLayout.setHorizontalGroup(
-            pnlCadastroOrganizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroOrganizadorLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(pnlCadastroOrganizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(pnlCadastroOrganizadorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnFinalizarCadastroOrganizador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancelarCadastroOrganizador)
-                .addGap(23, 23, 23))
-        );
-        pnlCadastroOrganizadorLayout.setVerticalGroup(
-            pnlCadastroOrganizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCadastroOrganizadorLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(pnlCadastroOrganizadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFinalizarCadastroOrganizador)
-                    .addComponent(btnCancelarCadastroOrganizador))
-                .addGap(29, 29, 29))
-        );
-
-        lblEmail.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblEmail.setText("Email para contato (opcional):");
-
-        lblSenha.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblSenha.setText("Senha:");
-
-        lblConfirmarSenha.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
-        lblConfirmarSenha.setText("Confirmar senha:");
+        jLabel11.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        jLabel11.setText("confirmar senha:");
 
         try {
             frmDataDeNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -296,103 +242,101 @@ public class CadastroInicial extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(lblCadastro)
-                .addContainerGap(234, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 484, Short.MAX_VALUE)
-                        .addComponent(btnCadastrarOrganizador))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblEndereco)
-                        .addComponent(lblEmail)
-                        .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                        .addComponent(lblSenha)
-                        .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblConfirmarSenha)
-                        .addComponent(lblUsername)
-                        .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-                        .addComponent(lblNome)
-                        .addComponent(lblDataNascimento)
-                        .addComponent(frmCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblCPF)
-                        .addComponent(frmDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtEndereco)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel10)
+                            .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel5)
+                            .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNome, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(btnCadastrarJogador)
-                            .addComponent(pswConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(139, 139, 139))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCadastroJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(pnlCadastroOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnCadastrarOrganizador)
+                        .addGap(143, 143, 143))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtEmail)
+                            .addComponent(txtEndereco)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel3)
+                                    .addComponent(frmCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(frmDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(86, 86, 86)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(pnlCadastroJogador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(267, 267, 267))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(273, 273, 273)
+                .addComponent(jLabel19)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblCadastro)
+                .addComponent(jLabel19)
                 .addGap(26, 26, 26)
-                .addComponent(lblNome)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblUsername)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblCPF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(frmCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel2)
                 .addGap(21, 21, 21)
-                .addComponent(lblDataNascimento)
-                .addGap(12, 12, 12)
-                .addComponent(frmDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEndereco)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(frmCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblSenha)
+                        .addComponent(jLabel3)
+                        .addGap(12, 12, 12)
+                        .addComponent(frmDataDeNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pswSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblConfirmarSenha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pswConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCadastrarJogador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(pnlCadastroJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(20, 20, 20))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(126, 126, 126)
-                        .addComponent(btnCadastrarOrganizador)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pnlCadastroOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 214, Short.MAX_VALUE)
-                        .addGap(12, 12, 12)))
-                .addContainerGap())
+                        .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlCadastroJogador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jpfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCadastrarJogador)
+                    .addComponent(btnCadastrarOrganizador))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNomeActionPerformed
@@ -409,63 +353,127 @@ public class CadastroInicial extends javax.swing.JFrame {
 
     private void btnCadastrarOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarOrganizadorActionPerformed
         this.organizador = new Organizador();
-        pnlCadastroOrganizador.setVisible(true);
+        if (!txtNome.getText().isBlank()) {
+            this.organizador.setNome(txtNome.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Nome inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!txtUsername.getText().isBlank()) {
+            this.organizador.setUsername(txtUsername.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Username inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!frmCPF.getText().isBlank()) {
+            this.organizador.setCPF(frmCPF.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "CPF inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!frmDataDeNascimento.getText().isBlank()) {
+            try {
+                Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDeNascimento.getText());
+                this.organizador.setDataDeNascimento(data);
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!txtEndereco.getText().isBlank()) {
+            this.organizador.setEndereco(txtEndereco.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Endereço inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!txtEmail.getText().isBlank()) {
+            if (txtEmail.getText().contains("@") && txtEmail.getText().contains(".com")) {
+                this.organizador.setEmail(txtEmail.getText());
+            } else {
+                JOptionPane.showMessageDialog(null, "Email inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        
+        if (!jpfSenha.getText().isBlank()) {
+            this.organizador.setSenha(jpfSenha.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
+        
+        if (!jpfConfirmaSenha.getText().equals(jpfSenha.getText())) {
+            JOptionPane.showMessageDialog(null, "Cofirmação de senha não coerente!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCadastrarOrganizadorActionPerformed
 
     private void btnCadastrarJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarJogadorActionPerformed
         this.jogador = new Jogador();
+        boolean cadastroOk = true;
         if (!txtNome.getText().isBlank()) {
             this.jogador.setNome(txtNome.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Nome inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
         }
         
         if (!txtUsername.getText().isBlank()) {
             this.jogador.setUsername(txtUsername.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Username inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
         }
         
         if (!frmCPF.getText().isBlank()) {
             this.jogador.setCPF(frmCPF.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "CPF inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
         }
         
         if (!frmDataDeNascimento.getText().isBlank()) {
-            Date date = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDeNascimento.getText());
-            this.jogador.setDataDeNascimento(date);
+            try {
+                Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDeNascimento.getText());
+                this.jogador.setDataDeNascimento(data);
+            } catch(Exception e) {
+                JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+                cadastroOk = false;
+            }
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
         }
         
         if (!txtEndereco.getText().isBlank()) {
             this.jogador.setEndereco(txtEndereco.getText());
         } else {
-            //
+            JOptionPane.showMessageDialog(null, "Endereco inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
         }
         
         if (!txtEmail.getText().isBlank()) {
             if (txtEmail.getText().contains("@") && txtEmail.getText().contains(".com")) {
                 this.jogador.setEmail(txtEmail.getText());
             } else {
-                //
+                JOptionPane.showMessageDialog(null, "Email inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+                cadastroOk = false;
             }
-        } else {
-            //
-        }
-        
-        if (!pswSenha.getText().isBlank()) {
-            this.jogador.setSenha(pswSenha.getText());
-        } else {
-            //
-        }
-        
-        if (!pswConfirmaSenha.getText().equals(pswSenha.getText())) {
-            //
         } 
         
-        pnlCadastroJogador.setVisible(true);
+        if (!jpfSenha.getText().isBlank()) {
+            this.jogador.setSenha(jpfSenha.getText());
+        } else {
+            JOptionPane.showMessageDialog(null, "Senha inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
+        }
+        
+        if (!jpfConfirmaSenha.getText().equals(jpfSenha.getText())) {
+            JOptionPane.showMessageDialog(null, "Cofirmação de senha não coerente!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+            cadastroOk = false;
+        } 
+        if (cadastroOk) {
+            pnlCadastroJogador.setVisible(true);
+        }
     }//GEN-LAST:event_btnCadastrarJogadorActionPerformed
 
     private void btnSimTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimTecnicoActionPerformed
@@ -483,6 +491,10 @@ public class CadastroInicial extends javax.swing.JFrame {
     private void btnNaoFreeAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNaoFreeAgentActionPerformed
         this.jogador.setFreeAgent(true);
     }//GEN-LAST:event_btnNaoFreeAgentActionPerformed
+
+    private void btnCancelarCadastroJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroJogadorActionPerformed
+        pnlCadastroJogador.setVisible(false);
+    }//GEN-LAST:event_btnCancelarCadastroJogadorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -530,33 +542,28 @@ public class CadastroInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarJogador;
     private javax.swing.JButton btnCadastrarOrganizador;
     private javax.swing.JButton btnCancelarCadastroJogador;
-    private javax.swing.JButton btnCancelarCadastroOrganizador;
     private javax.swing.JButton btnFinalizarCadastroJogador;
-    private javax.swing.JButton btnFinalizarCadastroOrganizador;
     private javax.swing.JButton btnNaoFreeAgent;
     private javax.swing.JButton btnNaoTecnico;
     private javax.swing.JButton btnSimFreeAgent;
     private javax.swing.JButton btnSimTecnico;
     private javax.swing.JFormattedTextField frmCPF;
     private javax.swing.JFormattedTextField frmDataDeNascimento;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JLabel lblCPF;
-    private javax.swing.JLabel lblCadastro;
-    private javax.swing.JLabel lblConfirmarSenha;
-    private javax.swing.JLabel lblDataNascimento;
-    private javax.swing.JLabel lblEmail;
-    private javax.swing.JLabel lblEndereco;
-    private javax.swing.JLabel lblNome;
-    private javax.swing.JLabel lblSenha;
-    private javax.swing.JLabel lblUsername;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPasswordField jpfConfirmaSenha;
+    private javax.swing.JPasswordField jpfSenha;
     private javax.swing.JPanel pnlCadastroJogador;
-    private javax.swing.JPanel pnlCadastroOrganizador;
-    private javax.swing.JPasswordField pswConfirmaSenha;
-    private javax.swing.JPasswordField pswSenha;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtEndereco;
     private javax.swing.JTextField txtNome;
