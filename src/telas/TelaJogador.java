@@ -4,13 +4,14 @@
  */
 package telas;
 
+import classes.TelaInicial;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author pedro
  */
-public class TelaJogador extends javax.swing.JFrame {
+public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
 
     /**
      * Creates new form elaJogador

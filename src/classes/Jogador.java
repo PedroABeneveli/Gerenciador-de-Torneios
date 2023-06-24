@@ -7,6 +7,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Date;
+import telas.TelaJogador;
 
 /**
  *
@@ -44,6 +45,10 @@ public class Jogador extends Pessoa {
         this.torneiosAnteriores = torneiosAnteriores;
     }
     
+    @Override
+    public TelaInicial getTela() {
+        return new TelaJogador();
+    }
     
     @Override
     public void criarLogin(String login) {

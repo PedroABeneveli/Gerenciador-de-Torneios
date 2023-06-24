@@ -5,13 +5,14 @@
  */
 package telas;
 
+import classes.TelaInicial;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author gustavo
  */
-public class TelaOrganizador extends javax.swing.JFrame {
+public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
 
     /**
      * Creates new form TelaOrganizador

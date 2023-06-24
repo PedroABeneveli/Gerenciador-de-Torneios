@@ -203,8 +203,11 @@ public class Login extends javax.swing.JFrame {
             txtUsuario.setEnabled(false);
             pswSenha.setEnabled(false);
             
+            // transforma a char array da pswSenha em string
+            String senha = new String(pswSenha.getPassword());
+            
             // teste pra ver se eh admin
-            if (txtUsuario.equals("Administrador") && String.valueOf(pswSenha.getPassword()).equals("12345")) {
+            if (txtUsuario.getText().equals("Administrador") && senha.equals("12345")) {
                 new Admin().setVisible(true);
                 this.dispose();
             // verificacao da senha de organizador ou jogador
@@ -212,25 +215,15 @@ public class Login extends javax.swing.JFrame {
                 Pessoa user = hashUsuarios.get(txtUsuario.getText());
                 
                 // juntamos o nome de usuario com a senha pra verificar se a codificacao eh igual
-                String chave = txtUsuario.getText() + String.valueOf(pswSenha.getPassword());
+                String chave = txtUsuario.getText() + senha;
                 String senhaCriptografada = criptografa(chave);
                 
                 if (senhaCriptografada.equals(user.getSenha())) {
-                    if (user instanceof Jogador) {
-                        JOptionPane.showMessageDialog(null, "Jogador logado com sucesso.", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
-                        // salva o usuario que realizou o login
-                        usuarioLogado = user;
-                        // retira essa tela e inicializa a tela principal
-                        new TelaJogador().setVisible(true);
-                        this.dispose();
-                    } else if (user instanceof Organizador) {
-                        JOptionPane.showMessageDialog(null, "Organizador logado com sucesso.", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
-                        // salva o usuario que realizou o login
-                        usuarioLogado = user;
-                        // retira essa tela e inicializa a tela principal
-                        new TelaOrganizador().setVisible(true);
-                        this.dispose();
-                    }
+                    JOptionPane.showMessageDialog(null, "Usuário logado com sucesso.", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
+                    // salva o usuario logado
+                    usuarioLogado = user;
+                    user.getTela().setVisible(true);
+                    this.dispose();
                 } else {
                     JOptionPane.showMessageDialog(null, "Senha incorreta.", "Aviso", JOptionPane.WARNING_MESSAGE);
                 }

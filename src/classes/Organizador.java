@@ -7,6 +7,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Date;
+import telas.TelaOrganizador;
 
 /**
  *
@@ -33,6 +34,11 @@ public class Organizador extends Pessoa {
         this.nota = nota;
         this.torneiosCriados = torneiosCriados;
         this.torneio = torneio;
+    }
+    
+    @Override
+    public TelaInicial getTela() {
+        return new TelaOrganizador();
     }
     
     @Override
