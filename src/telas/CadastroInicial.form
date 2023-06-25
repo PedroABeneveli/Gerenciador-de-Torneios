@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
+  <NonVisualComponents>
+    <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
+    </Menu>
+  </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
   </Properties>
   <SyntheticProperties>
+    <SyntheticProperty name="menuBar" type="java.lang.String" value="jMenuBar1"/>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -24,60 +29,55 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="lblSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="pswSenha" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
-                          <Component id="lblConfirmarSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel10" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jpfSenha" alignment="0" min="-2" pref="168" max="-2" attributes="0"/>
+                          <Component id="jLabel11" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                           <Component id="txtUsername" alignment="0" min="-2" pref="142" max="-2" attributes="0"/>
                           <Component id="txtNome" pref="540" max="32767" attributes="0"/>
-                          <Component id="lblNome" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblCPF" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="114" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="btnCadastrarJogador" min="-2" max="-2" attributes="0"/>
-                                  <Component id="pswConfirmaSenha" min="-2" pref="168" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
-                              <Component id="btnCadastrarOrganizador" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnSair" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="btnCadastrarJogador" min="-2" max="-2" attributes="0"/>
+                          <Component id="jpfConfirmaSenha" min="-2" pref="168" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnCadastrarOrganizador" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="143" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="txtEmail" max="32767" attributes="0"/>
+                          <Component id="txtEndereco" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtEmail" max="32767" attributes="0"/>
-                                  <Component id="txtEndereco" max="32767" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblEndereco" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblEmail" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="lblDataNascimento" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="frmCPF" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                          <Component id="frmDataDeNascimento" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="frmCPF" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
+                                  <Component id="frmDataDeNascimento" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="pnlCadastroJogador" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="86" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace pref="34" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="pnlCadastroJogador" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="267" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="158" max="-2" attributes="0"/>
-              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="273" max="-2" attributes="0"/>
+              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -85,49 +85,48 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblTitulo" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-              <Component id="lblNome" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtNome" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblUsername" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="txtUsername" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="lblCPF" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Component id="frmCPF" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblDataNascimento" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Component id="frmDataDeNascimento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblEndereco" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtEndereco" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="lblEmail" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="txtEmail" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="pnlCadastroJogador" max="32767" attributes="0"/>
+                  <Component id="pnlCadastroJogador" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblSenha" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="18" max="32767" attributes="0"/>
+              <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pswSenha" min="-2" max="-2" attributes="0"/>
+              <Component id="jpfSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="lblConfirmarSenha" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="pswConfirmaSenha" min="-2" max="-2" attributes="0"/>
+              <Component id="jpfConfirmaSenha" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCadastrarJogador" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="btnCadastrarOrganizador" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnSair" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
@@ -135,7 +134,7 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblTitulo">
+    <Component class="javax.swing.JLabel" name="jLabel19">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="48" style="1"/>
@@ -143,7 +142,7 @@
         <Property name="text" type="java.lang.String" value="Cadastro Inicial"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblNome">
+    <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -152,8 +151,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtNome">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNomeActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblCPF">
+    <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -161,7 +163,7 @@
         <Property name="text" type="java.lang.String" value="CPF:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblDataNascimento">
+    <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -169,7 +171,7 @@
         <Property name="text" type="java.lang.String" value="Data de nascimento:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEndereco">
+    <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -179,7 +181,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEndereco">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblUsername">
+    <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -219,36 +221,44 @@
           </Border>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="ancestorAdded" listener="javax.swing.event.AncestorListener" parameters="javax.swing.event.AncestorEvent" handler="pnlCadastroJogadorAncestorAdded"/>
+      </Events>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblEquipe" min="-2" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnSimTecnico" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace pref="137" max="32767" attributes="0"/>
-                                      <Component id="btnNaoTecnico" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                          <Group type="102" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="btnFinalizarCadastroJogador" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="btnCancelarCadastroJogador" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Component id="rbtSimTecnico" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="rbtNaoTecnico" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="rbtSimFreeAgent" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="rbtNaoFreeAgent" min="-2" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <Component id="lblTecnico" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" attributes="0">
-                                      <Component id="btnSimFreeAgent" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="btnNaoFreeAgent" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="1" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnFinalizarCadastroJogador" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="48" max="32767" attributes="0"/>
-                          <Component id="btnCancelarCadastroJogador" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
@@ -259,83 +269,39 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblTecnico" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnSimTecnico" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnNaoTecnico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtNaoTecnico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtSimTecnico" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="lblEquipe" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnSimFreeAgent" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnNaoFreeAgent" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCancelarCadastroJogador" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnFinalizarCadastroJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtSimFreeAgent" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="rbtNaoFreeAgent" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="30" max="32767" attributes="0"/>
+                  <EmptySpace pref="25" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btnFinalizarCadastroJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnCancelarCadastroJogador" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="lblTecnico">
+        <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="text" type="java.lang.String" value="Deseja ser t&#xe9;cnico de equipe?"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="btnSimTecnico">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="16" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Sim"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimTecnicoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnNaoTecnico">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="16" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNaoTecnicoActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblEquipe">
+        <Component class="javax.swing.JLabel" name="jLabel7">
           <Properties>
             <Property name="text" type="java.lang.String" value="Pertence a alguma equipe?"/>
           </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnSimFreeAgent">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="16" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Sim"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSimFreeAgentActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnNaoFreeAgent">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="16" style="0"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNaoFreeAgentActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnFinalizarCadastroJogador">
           <Properties>
@@ -359,9 +325,35 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCancelarCadastroJogadorActionPerformed"/>
           </Events>
         </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtNaoTecnico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtSimTecnico">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sim"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtSimTecnicoActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtSimFreeAgent">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Sim"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="rbtSimFreeAgentActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JRadioButton" name="rbtNaoFreeAgent">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="N&#xe3;o"/>
+          </Properties>
+        </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblEmail">
+    <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
@@ -371,25 +363,25 @@
     </Component>
     <Component class="javax.swing.JTextField" name="txtEmail">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblSenha">
+    <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Senha:"/>
+        <Property name="text" type="java.lang.String" value="senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="pswSenha">
+    <Component class="javax.swing.JPasswordField" name="jpfSenha">
     </Component>
-    <Component class="javax.swing.JLabel" name="lblConfirmarSenha">
+    <Component class="javax.swing.JLabel" name="jLabel11">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Ubuntu" size="15" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Confirmar senha:"/>
+        <Property name="text" type="java.lang.String" value="confirmar senha:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JPasswordField" name="pswConfirmaSenha">
+    <Component class="javax.swing.JPasswordField" name="jpfConfirmaSenha">
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="frmDataDeNascimento">
       <Properties>
@@ -404,20 +396,6 @@
           <Format format="###.###.###-##" subtype="-1" type="5"/>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnSair">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="16" style="0"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/exit32px.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Sair"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSairActionPerformed"/>
-      </Events>
     </Component>
   </SubComponents>
 </Form>
