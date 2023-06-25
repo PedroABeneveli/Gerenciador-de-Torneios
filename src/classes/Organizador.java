@@ -14,10 +14,12 @@ import telas.TelaOrganizador;
  * @author gustavo
  */
 public class Organizador extends Pessoa {
+    // Atributos
     private double nota;
     private ArrayList<Torneio> torneiosCriados;
     private Torneio torneio;
-
+    
+    // Construtores
     public Organizador() {
     }
 
@@ -37,31 +39,38 @@ public class Organizador extends Pessoa {
         super(nome, username, email, CPF, dataDeNascimento, endereco, senha);
     }
     
+    
+    // Implementação do método abstrato getTela da superclasse abstrata Pessoa, retorna um objeto da classe TelaJogador
     @Override
     public TelaInicial getTela() {
         return new TelaOrganizador();
     }
     
+    // Implementação do método abstrato criarLogin da superclasse abstrata Pessoa, verifica se já existe um login igual ao cadastrado no sistema
     @Override
     public void criarLogin(String login) {
         this.username = login;
     }
     
+    // Implementação do método abstrato criarSenha da superclasse abstrata Pessoa, verifica se já existe uma senha igual à cadastrada no sistema
     @Override
     public void criarSenha(String senha) {
         this.senha = senha;
     }
-
+    
+    // Implementação do método abstrato informarEmailContato da superclasse abstrata Pessoa, verifica se já existe um email igual ao cadastrado no sistema
     @Override
     public void informarEmailContato(String email) {
         this.email = email;
     }
     
+    // Finaliza um torneio
     public void finalizarTorneio() {
         torneiosCriados.add(torneio);
         torneio = null;
     } 
 
+    // Getters e setters
     public String getUsername() {
         return username;
     }

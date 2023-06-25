@@ -14,6 +14,8 @@ import telas.TelaJogador;
  * @author gustavo
  */
 public class Jogador extends Pessoa {
+    
+    // Atributos
     private boolean freeAgent;
     private boolean tecnico;
     private ArrayList<Integer> numeroVitoriasDerrotas;
@@ -21,7 +23,7 @@ public class Jogador extends Pessoa {
     private ArrayList<Equipe> equipes;
     private ArrayList<Torneio> torneiosAnteriores;
     
-
+    // Conatrutores
     public Jogador() {
     }
 
@@ -44,36 +46,43 @@ public class Jogador extends Pessoa {
         this.equipes = equipes;
         this.torneiosAnteriores = torneiosAnteriores;
     }
-        
+    
+    // Implementação do método abstrato getTela da superclasse abstrata Pessoa, retorna um objeto da classe TelaJogador
     @Override
     public TelaInicial getTela() {
         return new TelaJogador();
     }
     
+    // Implementação do método abstrato criarLogin da superclasse abstrata Pessoa, verifica se já existe um login igual ao cadastrado no sistema
     @Override
     public void criarLogin(String login) {
         this.username = login;
     }
     
+    // Implementação do método abstrato criarSenha da superclasse abstrata Pessoa, verifica se já existe uma senha igual à cadastrada no sistema
     @Override
     public void criarSenha(String senha) {
         this.senha = senha;
     }
-
+    
+    // Implementação do método abstrato informarEmailContato da superclasse abstrata Pessoa, verifica se já existe um email igual ao cadastrado no sistema
     @Override
     public void informarEmailContato(String email) {
         this.email = email;
     }
     
+    // Atualiza os dados dos torneios anteriores e das equipes anteriores do jogadorao final de um torneio
     public void atualizarDados(Torneio torneio, Equipe equipe) {
         this.torneiosAnteriores.add(torneio);
         this.equipes.add(equipe);
     }
 
+    // Calcula a razão entre o número de vitórias e o número de derrotas do jogador
     public double calcularRazaoVitoriasDerrotas() {
         return numeroVitoriasDerrotas.get(0) / numeroVitoriasDerrotas.get(1);
     }
 
+    // Getters e setters
     public String getUsername() {
         return username;
     }

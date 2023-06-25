@@ -14,6 +14,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Jogo implements Serializable {
+    // Atributos
     private String nome;
     private String criadora;
     private String publicadora;
@@ -22,6 +23,7 @@ public class Jogo implements Serializable {
     private String condicaoVitoria;
     private ArrayList<Torneio> torneios;
     
+    // Construtores
     public Jogo() {
         
     }
@@ -45,6 +47,8 @@ public class Jogo implements Serializable {
         this.condicaoVitoria = condicaoVitoria;
     }
     
+    
+    // Getters e setters
     public String getNome() {
         return nome;
     }
@@ -100,7 +104,5 @@ public class Jogo implements Serializable {
     public void setTorneios(ArrayList<Torneio> torneios) {
         this.torneios = torneios;
     }
-    
-    
     
 }

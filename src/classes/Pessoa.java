@@ -13,6 +13,7 @@ import java.util.Date;
  * @author gustavo
  */
 public abstract class Pessoa implements Serializable {
+    // Atributos
     protected String nome;
     protected String username;
     protected String email;
@@ -21,6 +22,7 @@ public abstract class Pessoa implements Serializable {
     protected String endereco;
     protected String senha;
 
+    // Construtores
     public Pessoa() {
             
     }
@@ -44,6 +46,7 @@ public abstract class Pessoa implements Serializable {
         this.senha = senha;
     }
     
+    // Assinatura dos métodos abstratos getTela, criarLogin, criarSenha e informarEmailContato
     public abstract TelaInicial getTela();
     
     public abstract void criarLogin(String login);
@@ -52,6 +55,7 @@ public abstract class Pessoa implements Serializable {
     
     public abstract void informarEmailContato(String email);
 
+    // Getters e setters
     public String getNome() {
         return nome;
     }

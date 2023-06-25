@@ -12,11 +12,13 @@ import java.util.ArrayList;
  * @author gustavo
  */
 public class Partida {
+    // Atributos
     private int numeroDeMapas;
     private ArrayList<Integer> resultadosParciais;
     private ArrayList<String> personagens;
     private Torneio torneio;
     
+    // Construtores
     public Partida() {
     
     }
@@ -27,7 +29,8 @@ public class Partida {
         this.personagens = personagens;
         this.torneio = torneio;
     }
-
+    
+    // Getters e setters
     public int getNumeroDeMapas() {
         return numeroDeMapas;
     }

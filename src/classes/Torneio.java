@@ -13,6 +13,7 @@ import java.util.Date;
  * @author gustavo
  */
 public class Torneio {
+    // Atributos
     private String nome;
     private int numeroDeEquipes;
     private boolean temEquipes;
@@ -25,6 +26,7 @@ public class Torneio {
     private ArrayList<Partida> partidas;
     private ArrayList<Avaliacao> avaliacoes;
     
+    // Construtores
     public Torneio() {
         
     } 
@@ -48,6 +50,7 @@ public class Torneio {
         return null;
     }
     
+    // Getters e setters
     public String getNome() {
         return nome;
     }

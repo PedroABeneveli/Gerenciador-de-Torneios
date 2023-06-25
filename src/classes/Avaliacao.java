@@ -10,13 +10,16 @@ package classes;
  * @author gustavo
  */
 public class Avaliacao {
+    
+    // Atributos
     private double regras;
     private double organizacao;
     private double trapaca;
     private double jogadores;
     private Torneio torneio;
     private Equipe equipe;
-
+    
+    // Construtor
     public Avaliacao(double regras, double organizacao, double trapaca, double jogadores, Torneio torneio, Equipe equipe) {
         this.regras = regras;
         this.organizacao = organizacao;
@@ -26,14 +29,16 @@ public class Avaliacao {
         this.equipe = equipe;
     }
     
-    public double calcluaAvaliacao() {
+    // Método que retorna a média simples dos atributos da Avaliacao
+    public double calculaAvaliacao() {
         return (regras+organizacao+trapaca+jogadores)/4;
     }
-
+    
+    // Getters e Setters
     public double getRegras() {
         return regras;
     }
-
+    
     public void setRegras(double regras) {
         this.regras = regras;
     }
