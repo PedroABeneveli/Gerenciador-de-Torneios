@@ -25,8 +25,9 @@ public abstract class Pessoa implements Serializable {
             
     }
     
-    public Pessoa(String nome, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
+    public Pessoa(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
         this.nome = nome;
+        this.username = username;
         this.email = email;
         this.CPF = CPF;
         this.dataDeNascimento = dataDeNascimento;
@@ -34,14 +35,14 @@ public abstract class Pessoa implements Serializable {
         this.senha = senha;
     }
     
-    public Pessoa(String nome, String CPF, Date dataDeNascimento, String endereco) {
+    public Pessoa(String nome, String username, String CPF, Date dataDeNascimento, String endereco, String senha) {
         this.nome = nome;
+        this.username = username;
         this.CPF = CPF;
         this.dataDeNascimento = dataDeNascimento;
         this.endereco = endereco;
+        this.senha = senha;
     }
-    
-    public abstract TelaInicial getTela();
     
     public abstract void criarLogin(String login);
     
@@ -95,14 +96,6 @@ public abstract class Pessoa implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
-    }
-    
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
     
 }

@@ -5,7 +5,6 @@
  */
 package classes;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +12,7 @@ import java.util.Date;
  *
  * @author gustavo
  */
-public class Jogo implements Serializable {
+public class Jogo {
     private String nome;
     private String criadora;
     private String publicadora;
@@ -34,6 +33,15 @@ public class Jogo implements Serializable {
         this.mapas = mapas;
         this.condicaoVitoria = condicaoVitoria;
         this.torneios = torneios;
+    }
+    
+    public Jogo(String nome, String criadora, String publicadora, Date dataDeCriacao, ArrayList<String> mapas, String condicaoVitoria) {
+        this.nome = nome;
+        this.criadora = criadora;
+        this.publicadora = publicadora;
+        this.dataDeCriacao = dataDeCriacao;
+        this.mapas = mapas;
+        this.condicaoVitoria = condicaoVitoria;
     }
     
     public String getNome() {

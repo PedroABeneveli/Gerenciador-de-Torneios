@@ -7,7 +7,6 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Date;
-import telas.TelaOrganizador;
 
 /**
  *
@@ -29,16 +28,12 @@ public class Organizador extends Pessoa {
         this.torneio = torneio;
     }
     
-    public Organizador(String nome, String CPF, Date dataDeNascimento, String endereco, double nota, ArrayList<Torneio> torneiosCriados, Torneio torneio) {
-        super(nome, CPF, dataDeNascimento, endereco);
-        this.nota = nota;
-        this.torneiosCriados = torneiosCriados;
-        this.torneio = torneio;
+    public Organizador(String nome, String username, String CPF, Date dataDeNascimento, String endereco, String senha) {
+        super(nome, username, CPF, dataDeNascimento, endereco, senha);
     }
     
-    @Override
-    public TelaInicial getTela() {
-        return new TelaOrganizador();
+    public Organizador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
+        super(nome, username, email, CPF, dataDeNascimento, endereco, senha);
     }
     
     @Override
@@ -60,6 +55,14 @@ public class Organizador extends Pessoa {
         torneiosCriados.add(torneio);
         torneio = null;
     } 
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public double getNota() {
         return nota;
