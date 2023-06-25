@@ -5,6 +5,7 @@
  */
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,7 @@ import java.util.Date;
  *
  * @author gustavo
  */
-public class Jogo {
+public class Jogo implements Serializable {
     private String nome;
     private String criadora;
     private String publicadora;

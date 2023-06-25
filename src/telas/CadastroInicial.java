@@ -455,7 +455,7 @@ public class CadastroInicial extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "CPF inválido!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
         }
         
-        if (!frmDataDeNascimento.getText().isBlank()) {
+        if (!frmDataDeNascimento.getText().equals("  /  /    ")) {
             try {
                 Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmDataDeNascimento.getText());
                 this.organizador.setDataDeNascimento(data);

@@ -4,6 +4,8 @@
  */
 package telas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pedro
@@ -15,6 +17,12 @@ public class Admin extends javax.swing.JFrame {
      */
     public Admin() {
         initComponents();
+        
+        btnJogadores.setEnabled(true);
+        btnJogos.setEnabled(true);
+        btnOrganizadores.setEnabled(true);
+        btnSair.setEnabled(true);
+        btnTorneios.setEnabled(true);
     }
 
     /**
@@ -37,12 +45,22 @@ public class Admin extends javax.swing.JFrame {
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         btnTorneios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png"))); // NOI18N
         btnTorneios.setText("Gerenciar Torneios");
 
         btnJogos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/controle32px.png"))); // NOI18N
         btnJogos.setText("Gerenciar Jogos");
+        btnJogos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJogosActionPerformed(evt);
+            }
+        });
 
         btnJogadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/jogadores32px.png"))); // NOI18N
         btnJogadores.setText("Gerenciar Jogadores");
@@ -90,6 +108,22 @@ public class Admin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja encerrar sua sessão?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        // 0 = sim, 1 = nao
+
+        if (resp == 0) {
+            new Login().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnSairActionPerformed
+
+    private void btnJogosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJogosActionPerformed
+        BuscaJogos.vemAdmin = true;
+        new BuscaJogos().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnJogosActionPerformed
 
     /**
      * @param args the command line arguments

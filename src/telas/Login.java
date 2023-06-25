@@ -210,6 +210,8 @@ public class Login extends javax.swing.JFrame {
             if (txtUsuario.getText().equals("Administrador") && senha.equals("12345")) {
                 new Admin().setVisible(true);
                 this.dispose();
+                // assim conseguimos garantir que estamos logado como administrador
+                usuarioLogado = null;
             // verificacao da senha de organizador ou jogador
             } else {
                 Pessoa user = hashUsuarios.get(txtUsuario.getText());
