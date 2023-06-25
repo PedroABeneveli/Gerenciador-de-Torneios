@@ -25,7 +25,7 @@ public class Jogador extends Pessoa {
     public Jogador() {
     }
 
-    public Jogador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes) {
+    public Jogador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, boolean freeAgent, boolean tecnico) {
         super(nome, email, CPF, dataDeNascimento, endereco, senha);
         this.username = username;
         this.freeAgent = freeAgent;
@@ -34,9 +34,9 @@ public class Jogador extends Pessoa {
         this.ranqueamento = ranqueamento;
         this.equipes = equipes;
     }
-    
-    public Jogador(String nome, String CPF, Date dataDeNascimento, String endereco, boolean freeAgent, boolean tecnico, ArrayList<Integer> numeroVitoriasDerrotas, String ranqueamento, ArrayList<Equipe> equipes, ArrayList<Torneio> torneiosAnteriores) {
-        super(nome, CPF, dataDeNascimento, endereco);
+
+    public Jogador(String nome, String username, String CPF, Date dataDeNascimento, String endereco, String senha, boolean freeAgent, boolean tecnico) {
+        super(nome, username, CPF, dataDeNascimento, endereco, senha);
         this.freeAgent = freeAgent;
         this.tecnico = tecnico;
         this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
@@ -44,7 +44,7 @@ public class Jogador extends Pessoa {
         this.equipes = equipes;
         this.torneiosAnteriores = torneiosAnteriores;
     }
-    
+        
     @Override
     public TelaInicial getTela() {
         return new TelaJogador();

@@ -102,7 +102,7 @@ public class Login extends javax.swing.JFrame {
 
         pnlDados.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblUsuario.setText("Usuário");
+        lblUsuario.setText("Username");
 
         lblSenha.setText("Senha");
 

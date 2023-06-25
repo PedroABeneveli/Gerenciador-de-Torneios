@@ -44,6 +44,8 @@ public abstract class Pessoa implements Serializable {
         this.senha = senha;
     }
     
+    public abstract TelaInicial getTela();
+    
     public abstract void criarLogin(String login);
     
     public abstract void criarSenha(String senha);
@@ -96,6 +98,14 @@ public abstract class Pessoa implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
     
 }

@@ -7,6 +7,7 @@ package classes;
 
 import java.util.ArrayList;
 import java.util.Date;
+import telas.TelaOrganizador;
 
 /**
  *
@@ -34,6 +35,11 @@ public class Organizador extends Pessoa {
     
     public Organizador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha) {
         super(nome, username, email, CPF, dataDeNascimento, endereco, senha);
+    }
+    
+    @Override
+    public TelaInicial getTela() {
+        return new TelaOrganizador();
     }
     
     @Override
