@@ -6,6 +6,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import telas.TelaJogador;
 
@@ -20,10 +21,9 @@ public class Jogador extends Pessoa {
     // Atributos
     private boolean freeAgent;
     private boolean tecnico;
-    private ArrayList<Integer> numeroVitoriasDerrotas;
+    private ArrayList<Integer> numeroVitoriasDerrotas = new ArrayList<>(Arrays.asList(1, 1));
     private String ranqueamento;
     private ArrayList<Equipe> equipes;
-    private ArrayList<Torneio> torneiosAnteriores;
     
     // Conatrutores
     public Jogador() {
@@ -34,19 +34,12 @@ public class Jogador extends Pessoa {
         this.username = username;
         this.freeAgent = freeAgent;
         this.tecnico = tecnico;
-        this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
-        this.ranqueamento = ranqueamento;
-        this.equipes = equipes;
     }
 
     public Jogador(String nome, String username, String CPF, Date dataDeNascimento, String endereco, String senha, boolean freeAgent, boolean tecnico) {
         super(nome, username, CPF, dataDeNascimento, endereco, senha);
         this.freeAgent = freeAgent;
         this.tecnico = tecnico;
-        this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
-        this.ranqueamento = ranqueamento;
-        this.equipes = equipes;
-        this.torneiosAnteriores = torneiosAnteriores;
     }
     
     // Implementação do método abstrato getTela da superclasse abstrata Pessoa, retorna um objeto da classe TelaJogador
@@ -73,9 +66,9 @@ public class Jogador extends Pessoa {
         this.email = email;
     }
     
-    // Atualiza os dados dos torneios anteriores e das equipes anteriores do jogadorao final de um torneio
+    // Atualiza os dados dos torneios anteriores e das equipes anteriores do jogador ao final de um torneio
     public void atualizarDados(Torneio torneio, Equipe equipe) {
-        this.torneiosAnteriores.add(torneio);
+        //this.torneiosAnteriores.add(torneio);
         this.equipes.add(equipe);
     }
 

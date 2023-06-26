@@ -1,6 +1,8 @@
 package telas;
 
+import classes.Jogador;
 import classes.Jogo;
+import classes.Organizador;
 import classes.Torneio;
 import java.io.File;
 import java.io.FileInputStream;
@@ -28,27 +30,30 @@ public class BuscaTorneios extends javax.swing.JFrame {
     public BuscaTorneios() {
         initComponents();
         todosTorneios = new ArrayList<>();
-        
-        try {
-            
-            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
-            
-            todosTorneios = (ArrayList<Torneio>) objectIn.readObject();
-            fileIn.close();
-            objectIn.close();
-            
-        } catch (FileNotFoundException e) {
-            System.out.println("Arq. não encontrado");
-        } catch (IOException e) {
-            System.out.println("Erro inicializando stream");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Nao achei a classe");
+        if (Login.usuarioLogado instanceof Organizador) {
+            todosTorneios = ((Organizador) Login.usuarioLogado).getTorneiosCriados();
+        } else {
+            try {
+
+                FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+                todosTorneios = (ArrayList<Torneio>) objectIn.readObject();
+                fileIn.close();
+                objectIn.close();
+
+            } catch (FileNotFoundException e) {
+                System.out.println("Arq. não encontrado");
+            } catch (IOException e) {
+                System.out.println("Erro inicializando stream");
+            } catch (ClassNotFoundException e) {
+                System.out.println("Nao achei a classe");
+            }
         }
         
         montarTabela(todosTorneios);
         estadoInicial();
-        
+
         pesquisouJogo = false;
     }
     
@@ -144,6 +149,11 @@ public class BuscaTorneios extends javax.swing.JFrame {
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
         lblNome.setText("Nome:");
 
@@ -304,6 +314,18 @@ public class BuscaTorneios extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_tblTorneiosMouseClicked
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        if (Login.usuarioLogado == null) {
+            // se é um administrador, volta para tela Admin
+            new Admin().setVisible(true);
+            this.dispose();
+        } else if (Login.usuarioLogado instanceof Jogador) {
+            // se é jogador, volta pra sua tela inicial
+            new TelaJogador().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments

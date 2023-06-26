@@ -1,20 +1,132 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
-/**
- *
- * @author pedro
- */
-public class BuscaJogadores extends javax.swing.JFrame {
+import classes.Jogador;
+import classes.Jogo;
+import classes.Pessoa;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+public class BuscaJogadores extends javax.swing.JFrame {
+    
+    // hash map com todos os ususarios cadastrados no sistema
+    private HashMap<String, Pessoa> usuarios;
+    // listas para montar a tabela e filtrar resultados nas pesquisas
+    private ArrayList<Jogador> listaJogadores;
+    private ArrayList<Jogador> jogFiltrados;
+    // pra ser possívl acessar de outras telas o jogador selecionado
+    public static Jogador jogadorSelecionado;
+    
     /**
      * Creates new form BuscaJogadores
      */
     public BuscaJogadores() {
         initComponents();
+        
+        listaJogadores = new ArrayList<>();
+        
+        // faz a leitura do arquivo login.txt
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            usuarios = (HashMap<String, Pessoa>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+        }
+        
+        for (Map.Entry<String, Pessoa> valor : usuarios.entrySet()) {
+            if (valor.getValue() instanceof Jogador)
+                listaJogadores.add((Jogador) valor.getValue());
+        }
+        
+        montarLista(usuarios);
+        
+        montarTabela(listaJogadores);
+        estadoInicial();
+    }
+    
+    // cria a lista de jogadores a partir da hash dada
+    private void montarLista(HashMap<String, Pessoa> hash) {
+        listaJogadores = new ArrayList<>();
+        for (Map.Entry<String, Pessoa> valor : hash.entrySet()) {
+            if (valor.getValue() instanceof Jogador)
+                listaJogadores.add((Jogador) valor.getValue());
+        }
+    }
+    
+    // vai receber a hash e armazenar no arquivo login.txt
+    private boolean armazenarHash(HashMap<String, Pessoa> hash) {
+        // escreve a hash no arquivo
+        try {
+            
+            FileOutputStream fileOut = new FileOutputStream(new File("src\\arquivos\\login.txt"));
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            
+            objectOut.writeObject(hash);
+            
+            objectOut.close();
+            fileOut.close();
+            
+            return true;
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+            return false;
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+            return false;
+        }
+    }
+    
+    // monta a tabela com a lista dada
+    private void montarTabela(ArrayList<Jogador> listaPlayers) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Username", "Razão W/L", "Ranquamento"}, 0);
+        
+        for (int i = 0 ; i < listaPlayers.size() ; i++) {
+            Object linha[] = {listaPlayers.get(i).getUsername(), 
+                              listaPlayers.get(i).calcularRazaoVitoriasDerrotas(), 
+                              listaPlayers.get(i).getRanqueamento()};
+            modelo.addRow(linha);
+        }
+        
+        tblJogadores.setModel(modelo);
+        
+        tblJogadores.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblJogadores.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblJogadores.getColumnModel().getColumn(2).setPreferredWidth(50);
+    }
+    
+    // estados dos elementos swing da tela ao abri-la
+    private void estadoInicial() {
+        txtUsername.setText("");
+        rdbEquipeSim.setSelected(true);
+        rdbTecnicoSim.setSelected(true);
+        
+        txtUsername.setEnabled(true);
+        rdbEquipeSim.setEnabled(true);
+        rdbEquipeNao.setEnabled(true);
+        rdbTecnicoNao.setEnabled(true);
+        rdbTecnicoSim.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnVoltar.setEnabled(true);
     }
 
     /**
@@ -26,10 +138,20 @@ public class BuscaJogadores extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupFreeAgent = new javax.swing.ButtonGroup();
+        btnGroupTecnico = new javax.swing.ButtonGroup();
         scrTabela = new javax.swing.JScrollPane();
         tblJogadores = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
-        btnAdicionar = new javax.swing.JButton();
+        lblNome = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblFreeAgent = new javax.swing.JLabel();
+        rdbEquipeSim = new javax.swing.JRadioButton();
+        rdbEquipeNao = new javax.swing.JRadioButton();
+        lblTecnico = new javax.swing.JLabel();
+        rdbTecnicoSim = new javax.swing.JRadioButton();
+        rdbTecnicoNao = new javax.swing.JRadioButton();
+        btnPesquisar = new javax.swing.JToggleButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -43,7 +165,7 @@ public class BuscaJogadores extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Nickname", "Razão W/L", "Ranqueamento"
+                "Username", "Razão W/L", "Ranqueamento"
             }
         ) {
             Class[] types = new Class [] {
@@ -61,13 +183,48 @@ public class BuscaJogadores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblJogadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblJogadoresMouseClicked(evt);
+            }
+        });
         scrTabela.setViewportView(tblJogadores);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
 
-        btnAdicionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/mais32px.png"))); // NOI18N
-        btnAdicionar.setText("Adicionar");
+        lblNome.setText("Username");
+
+        lblFreeAgent.setText("Pertence a alguma equipe?");
+
+        btnGroupFreeAgent.add(rdbEquipeSim);
+        rdbEquipeSim.setSelected(true);
+        rdbEquipeSim.setText("Sim");
+
+        btnGroupFreeAgent.add(rdbEquipeNao);
+        rdbEquipeNao.setText("Não");
+
+        lblTecnico.setText("É um técnico?");
+
+        btnGroupTecnico.add(rdbTecnicoSim);
+        rdbTecnicoSim.setSelected(true);
+        rdbTecnicoSim.setText("Sim");
+
+        btnGroupTecnico.add(rdbTecnicoNao);
+        rdbTecnicoNao.setText("Não");
+
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar32px.png"))); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -78,25 +235,129 @@ public class BuscaJogadores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAdicionar)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVoltar))
+                    .addComponent(txtUsername)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome)
+                            .addComponent(lblFreeAgent)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(rdbEquipeSim)
+                                .addGap(18, 18, 18)
+                                .addComponent(rdbEquipeNao))
+                            .addComponent(lblTecnico))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(rdbTecnicoSim)
+                        .addGap(18, 18, 18)
+                        .addComponent(rdbTecnicoNao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnVoltar)))
+                        .addComponent(btnPesquisar)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnVoltar)
-                    .addComponent(btnAdicionar))
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFreeAgent)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbEquipeSim)
+                    .addComponent(rdbEquipeNao))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblTecnico)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rdbTecnicoSim)
+                    .addComponent(rdbTecnicoNao)
+                    .addComponent(btnPesquisar))
+                .addGap(7, 7, 7)
+                .addComponent(scrTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnVoltar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+       boolean ehTecnico, ehFreeAgent;
+        
+        if (rdbTecnicoSim.isSelected())
+            ehTecnico = true;
+        else
+            ehTecnico = false;
+        
+        if (rdbEquipeSim.isSelected())
+            ehFreeAgent = true;
+        else
+            ehFreeAgent = false;
+        
+        jogFiltrados = new ArrayList<>();
+        for (Jogador jogador : listaJogadores) {
+            if (jogador.getUsername().contains(txtUsername.getName()) 
+                    && jogador.isTecnico() == ehTecnico && jogador.isFreeAgent() == ehFreeAgent)
+                jogFiltrados.add(jogador);
+        }
+        // avisa se não foi encontrada um jogador com esse parametros
+        if (jogFiltrados.isEmpty())
+            JOptionPane.showMessageDialog(null, "Nenhum jogador corresponde a esses parâmetros!", "Falha", JOptionPane.WARNING_MESSAGE);
+        else
+            montarTabela(jogFiltrados);
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void tblJogadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblJogadoresMouseClicked
+        int idx = tblJogadores.getSelectedRow();
+        
+        if (idx >= 0 && idx < jogFiltrados.size()) {
+            Jogador jogador = jogFiltrados.get(idx);
+            if (Login.usuarioLogado == null) {
+                int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir esse jogador do sistema?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                // 0 = sim, 1 = nao
+
+                if (resp == 0) {
+                    usuarios.remove(jogador.getUsername());
+                    boolean deuCerto = armazenarHash(usuarios);
+                    if (deuCerto) {
+                        JOptionPane.showMessageDialog(null, "Jogador excluído com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                        // refaz a lista e já exibe a modificada, sem precisar ler o arquivo novamente
+                        montarLista(usuarios);
+                        montarTabela(listaJogadores);
+                    }                    
+                }      
+            } else {
+                // eh Jogador
+                int resp = JOptionPane.showConfirmDialog(null, "Deseja adicionar esse jogador à equipe?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                // 0 = sim, 1 = nao
+
+                if (resp == 0) {
+                    jogadorSelecionado = jogador;
+                    this.dispose();
+                }
+            }
+        }
+            
+    }//GEN-LAST:event_tblJogadoresMouseClicked
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja encerrar a busca?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        // 0 = sim, 1 = nao
+
+        if (resp == 0) {
+            if (Login.usuarioLogado == null) {
+                new Admin().setVisible(true);
+            }
+            // fecha a tela independentemente do tipo de usuario
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,9 +395,19 @@ public class BuscaJogadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAdicionar;
+    private javax.swing.ButtonGroup btnGroupFreeAgent;
+    private javax.swing.ButtonGroup btnGroupTecnico;
+    private javax.swing.JToggleButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel lblFreeAgent;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblTecnico;
+    private javax.swing.JRadioButton rdbEquipeNao;
+    private javax.swing.JRadioButton rdbEquipeSim;
+    private javax.swing.JRadioButton rdbTecnicoNao;
+    private javax.swing.JRadioButton rdbTecnicoSim;
     private javax.swing.JScrollPane scrTabela;
     private javax.swing.JTable tblJogadores;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

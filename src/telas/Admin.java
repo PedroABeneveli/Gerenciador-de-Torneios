@@ -53,6 +53,11 @@ public class Admin extends javax.swing.JFrame {
 
         btnTorneios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png"))); // NOI18N
         btnTorneios.setText("Gerenciar Torneios");
+        btnTorneios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTorneiosActionPerformed(evt);
+            }
+        });
 
         btnJogos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/controle32px.png"))); // NOI18N
         btnJogos.setText("Gerenciar Jogos");
@@ -64,6 +69,11 @@ public class Admin extends javax.swing.JFrame {
 
         btnJogadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/jogadores32px.png"))); // NOI18N
         btnJogadores.setText("Gerenciar Jogadores");
+        btnJogadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJogadoresActionPerformed(evt);
+            }
+        });
 
         btnOrganizadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/organizador32px.png"))); // NOI18N
         btnOrganizadores.setText("Gerenciar Organizadores");
@@ -124,6 +134,16 @@ public class Admin extends javax.swing.JFrame {
         new BuscaJogos().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnJogosActionPerformed
+
+    private void btnTorneiosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTorneiosActionPerformed
+        new BuscaTorneios().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnTorneiosActionPerformed
+
+    private void btnJogadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJogadoresActionPerformed
+        new BuscaJogadores().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnJogadoresActionPerformed
 
     /**
      * @param args the command line arguments

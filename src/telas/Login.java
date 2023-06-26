@@ -53,9 +53,6 @@ public class Login extends javax.swing.JFrame {
                 objectOut.close();
                 fileOut.close();
             }
-            
-            
-            
         } catch (FileNotFoundException e) {
             System.out.println("Arq. não encontrado");
         } catch (IOException e) {
