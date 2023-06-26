@@ -4,17 +4,68 @@
  */
 package telas;
 
+import classes.Jogo;
+import classes.Torneio;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author pedro
  */
 public class CriarTorneio extends javax.swing.JFrame {
-
+    
+    private ArrayList<Torneio> listaTorneios;
+    private boolean pesquisouJogo;
+    
     /**
      * Creates new form CriarTorneio
      */
     public CriarTorneio() {
         initComponents();
+        
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            listaTorneios = (ArrayList<Torneio>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+        }
+        
+        pesquisouJogo = false;
+        estadoInicial();
+    }
+    
+    // habilita, desabilita campos e preenche as areas de texto com seus valores iniciais
+    private void estadoInicial() {
+        txtNome.setText("");
+        frmData.setText("");
+        txtNomeJogo.setText("");
+        
+        txtNome.setEnabled(true);
+        frmData.setEnabled(true);
+        txtNomeJogo.setEnabled(false);      // Pois nesse campo de texto será escrito um atributo, não é modificável
+        btnAtualizar.setEnabled(true);
+        btnEscolherJogo.setEnabled(true);
+        btnSair.setEnabled(true);
+        btnSalvar.setEnabled(true);
     }
 
     /**
@@ -31,10 +82,14 @@ public class CriarTorneio extends javax.swing.JFrame {
         lblData = new javax.swing.JLabel();
         frmData = new javax.swing.JFormattedTextField();
         lblJogo = new javax.swing.JLabel();
-        cmbJogo = new javax.swing.JComboBox<>();
         jSeparator1 = new javax.swing.JSeparator();
         btnSair = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
+        btnEscolherJogo = new javax.swing.JButton();
+        txtNomeJogo = new javax.swing.JTextField();
+        btnAtualizar = new javax.swing.JButton();
+        lblFormato = new javax.swing.JLabel();
+        lblNumeroEtapas = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,57 +105,94 @@ public class CriarTorneio extends javax.swing.JFrame {
 
         lblJogo.setText("Jogo");
 
-        cmbJogo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Escolha um jogo" }));
-
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnSair.setText("Sair");
 
         btnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/salvar32px.png"))); // NOI18N
         btnSalvar.setText("Salvar");
+        btnSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalvarActionPerformed(evt);
+            }
+        });
+
+        btnEscolherJogo.setText("Escolher Jogo");
+        btnEscolherJogo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEscolherJogoActionPerformed(evt);
+            }
+        });
+
+        btnAtualizar.setText("Atualizar o nome do jogo");
+        btnAtualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtualizarActionPerformed(evt);
+            }
+        });
+
+        lblFormato.setText("Formato:");
+
+        lblNumeroEtapas.setText("Número de etapas:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNome)
-                            .addComponent(lblData)
-                            .addComponent(lblJogo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNome)
+                    .addComponent(txtNome)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnEscolherJogo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 112, Short.MAX_VALUE)
+                                .addComponent(btnAtualizar))
+                            .addComponent(txtNomeJogo)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblNome)
+                                    .addComponent(lblData)
                                     .addComponent(frmData, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(10, 10, 10))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnSalvar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 206, Short.MAX_VALUE)
-                        .addComponent(btnSair)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnSair))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblJogo)
+                            .addComponent(lblFormato)
+                            .addComponent(lblNumeroEtapas))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNome)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblData)
-                    .addComponent(frmData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblJogo)
-                    .addComponent(cmbJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblData)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(frmData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblJogo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNomeJogo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEscolherJogo)
+                    .addComponent(btnAtualizar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblFormato)
+                .addGap(18, 18, 18)
+                .addComponent(lblNumeroEtapas)
+                .addGap(24, 24, 24)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -111,6 +203,45 @@ public class CriarTorneio extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEscolherJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherJogoActionPerformed
+        pesquisouJogo = true;
+        new BuscaJogos().setVisible(true);
+    }//GEN-LAST:event_btnEscolherJogoActionPerformed
+
+    private void btnAtualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtualizarActionPerformed
+        if (!pesquisouJogo || (pesquisouJogo && BuscaJogos.jogoSelecionado == null))
+            JOptionPane.showMessageDialog(null, "Selecione um jogo primeiro", "Aviso", JOptionPane.WARNING_MESSAGE);
+        else {
+            Jogo jogo = BuscaJogos.jogoSelecionado;
+            txtNomeJogo.setText(jogo.getNome());
+        }
+    }//GEN-LAST:event_btnAtualizarActionPerformed
+
+    private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
+        boolean cadastroOk = true;
+        if (txtNome.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "Nome Inválido!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            cadastroOk = false;
+        }
+        if (frmData.getText().equals("  /  /    ")) {
+            JOptionPane.showMessageDialog(null, "Data inválida!", "Aviso", JOptionPane.WARNING_MESSAGE);
+            cadastroOk = false;
+        }
+        if (!pesquisouJogo || (pesquisouJogo && BuscaJogos.jogoSelecionado == null)) {
+            JOptionPane.showMessageDialog(null, "Escolha um jogo", "Aviso", JOptionPane.WARNING_MESSAGE);
+            cadastroOk = false;
+        }
+        
+        if (cadastroOk) {
+            try {
+                Date dataRealizacao = new SimpleDateFormat("dd/MM/yyyy").parse(frmData.getText());
+                
+            } catch (ParseException e) {
+                System.out.println("Problema na leitura da data");
+            }
+        }
+    }//GEN-LAST:event_btnSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -148,14 +279,18 @@ public class CriarTorneio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtualizar;
+    private javax.swing.JButton btnEscolherJogo;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnSalvar;
-    private javax.swing.JComboBox<String> cmbJogo;
     private javax.swing.JFormattedTextField frmData;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblData;
+    private javax.swing.JLabel lblFormato;
     private javax.swing.JLabel lblJogo;
     private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblNumeroEtapas;
     private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtNomeJogo;
     // End of variables declaration//GEN-END:variables
 }
