@@ -87,6 +87,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Gerenciar Torneios"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTorneiosActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnJogos">
       <Properties>
@@ -106,6 +109,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Gerenciar Jogadores"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnJogadoresActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnOrganizadores">
       <Properties>

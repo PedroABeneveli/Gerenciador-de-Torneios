@@ -19,18 +19,16 @@ public class Organizador extends Pessoa {
     // Atributos
     private double nota;
     private ArrayList<Torneio> torneiosCriados;
-    private Torneio torneio;
     
     // Construtores
     public Organizador() {
     }
 
-    public Organizador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, double nota, ArrayList<Torneio> torneiosCriados, Torneio torneio) {
+    public Organizador(String nome, String username, String email, String CPF, Date dataDeNascimento, String endereco, String senha, double nota, ArrayList<Torneio> torneiosCriados) {
         super(nome, email, CPF, dataDeNascimento, endereco, senha);
         this.username = username;
         this.nota = nota;
         this.torneiosCriados = torneiosCriados;
-        this.torneio = torneio;
     }
     
     public Organizador(String nome, String username, String CPF, Date dataDeNascimento, String endereco, String senha) {
@@ -66,11 +64,11 @@ public class Organizador extends Pessoa {
         this.email = email;
     }
     
-    // Finaliza um torneio
+    /*// Finaliza um torneio
     public void finalizarTorneio() {
         torneiosCriados.add(torneio);
         torneio = null;
-    } 
+    } */
 
     // Getters e setters
     public String getUsername() {
@@ -96,7 +94,7 @@ public class Organizador extends Pessoa {
     public void setTorneiosCriados(ArrayList<Torneio> torneiosCriados) {
         this.torneiosCriados = torneiosCriados;
     }
-
+/*
     public Torneio getTorneio() {
         return torneio;
     }
@@ -104,7 +102,7 @@ public class Organizador extends Pessoa {
     public void setTorneio(Torneio torneio) {
         this.torneio = torneio;
     }
-
+*/
     public String getNome() {
         return nome;
     }
