@@ -21,11 +21,10 @@ public class Torneio implements Serializable {
     private int numeroDeEquipes;
     private boolean temEquipes;
     private Date DataDeRealizacao;
-    private ArrayList<String> formato;
+    private String formato;
     private int numeroDeEtapas;
     private boolean ativo;
     private Jogo jogo;
-    private ArrayList<Equipe> equipes;
     private ArrayList<Partida> partidas;
     private ArrayList<Avaliacao> avaliacoes;
     
@@ -33,19 +32,14 @@ public class Torneio implements Serializable {
     public Torneio() {
         
     } 
-    
-    public Torneio(String nome, int numeroDeEquipes, boolean temEquipes, Date DataDeRealizacao, ArrayList<String> formato, int numeroDeEtapas, boolean ativo, Jogo jogo, ArrayList<Equipe> equipes, ArrayList<Partida> partidas) {
+
+    public Torneio(String nome, Date DataDeRealizacao, String formato, int numeroDeEtapas, Jogo jogo) {
         this.nome = nome;
-        this.numeroDeEquipes = numeroDeEquipes;
-        this.temEquipes = temEquipes;
         this.DataDeRealizacao = DataDeRealizacao;
         this.formato = formato;
         this.numeroDeEtapas = numeroDeEtapas;
-        this.ativo = ativo;
         this.jogo = jogo;
-        this.equipes = equipes;
-        this.partidas = partidas;
-    }
+    }    
 
     // percorre as equipes e determina qual eh a com colocacao 1
     public Equipe vencedor() {
@@ -92,11 +86,11 @@ public class Torneio implements Serializable {
         this.DataDeRealizacao = DataDeRealizacao;
     }
 
-    public ArrayList<String> getFormato() {
+    public String getFormato() {
         return formato;
     }
 
-    public void setFormato(ArrayList<String> formato) {
+    public void setFormato(String formato) {
         this.formato = formato;
     }
 
@@ -122,14 +116,6 @@ public class Torneio implements Serializable {
 
     public void setJogo(Jogo jogo) {
         this.jogo = jogo;
-    }
-
-    public ArrayList<Equipe> getEquipes() {
-        return equipes;
-    }
-
-    public void setEquipes(ArrayList<Equipe> equipes) {
-        this.equipes = equipes;
     }
 
     public ArrayList<Partida> getPartidas() {

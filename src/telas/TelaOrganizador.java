@@ -38,6 +38,7 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Organizador");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/organizador32px.png")).getImage());
         setSize(new java.awt.Dimension(800, 500));
 
         lblBemVindo.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
@@ -126,6 +127,7 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
 
     private void btnCriarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarTorneioActionPerformed
         new CriarTorneio().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnCriarTorneioActionPerformed
 
     private void btnTorneiosCriadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTorneiosCriadosActionPerformed

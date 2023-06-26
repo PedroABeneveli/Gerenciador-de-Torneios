@@ -22,21 +22,19 @@ public class Equipe implements Serializable {
     private String nome;
     private ArrayList<Integer> numeroVitoriasDerrotas;
     private int pontuacao;
-    private Torneio torneio;
     private ArrayList<Jogador> jogadores;
     private String email;
     private String login;
     private String senha;
-    private ArrayList<Avaliacao> avaliacoes; 
+    private Avaliacao avaliacao; 
     
     // Construtor
-    public Equipe(boolean inscricao, int colocacao, String nome, ArrayList<Integer> numeroVitoriasDerrotas, int pontuacao, Torneio torneio, ArrayList<Jogador> jogadores) {
+    public Equipe(boolean inscricao, int colocacao, String nome, ArrayList<Integer> numeroVitoriasDerrotas, int pontuacao, ArrayList<Jogador> jogadores) {
         this.inscricao = inscricao;
         this.colocacao = colocacao;
         this.nome = nome;
         this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
         this.pontuacao = pontuacao;
-        this.torneio = torneio;
         this.jogadores = jogadores;
     }
     
@@ -105,14 +103,6 @@ public class Equipe implements Serializable {
         this.pontuacao = pontuacao;
     }
 
-    public Torneio getTorneio() {
-        return torneio;
-    }
-
-    public void setTorneio(Torneio torneio) {
-        this.torneio = torneio;
-    }
-
     public ArrayList<Jogador> getJogadores() {
         return jogadores;
     }
@@ -121,12 +111,12 @@ public class Equipe implements Serializable {
         this.jogadores = jogadores;
     }
 
-    public ArrayList<Avaliacao> getAvaliacoes() {
-        return avaliacoes;
+    public Avaliacao getAvaliacoes() {
+        return avaliacao;
     }
 
-    public void setAvaliacoes(ArrayList<Avaliacao> avaliacoes) {
-        this.avaliacoes = avaliacoes;
+    public void setAvaliacoes(Avaliacao avaliacao) {
+        this.avaliacao = avaliacao;
     }
     
     
