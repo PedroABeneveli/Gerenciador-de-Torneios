@@ -14,6 +14,8 @@ import telas.TelaJogador;
  * @author gustavo
  */
 public class Jogador extends Pessoa {
+    // variavel para arquivos
+    private static final long serialVersionUID = 2L;
     
     // Atributos
     private boolean freeAgent;

@@ -14,6 +14,8 @@ import telas.TelaOrganizador;
  * @author gustavo
  */
 public class Organizador extends Pessoa {
+    // variavel para arquivos
+    private static final long serialVersionUID = 3L;
     // Atributos
     private double nota;
     private ArrayList<Torneio> torneiosCriados;

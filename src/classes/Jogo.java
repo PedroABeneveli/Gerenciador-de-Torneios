@@ -14,6 +14,8 @@ import java.util.Date;
  * @author gustavo
  */
 public class Jogo implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 4L;
     // Atributos
     private String nome;
     private String criadora;

@@ -6,8 +6,10 @@ import classes.Pessoa;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -32,12 +34,27 @@ public class Login extends javax.swing.JFrame {
         
         try {
             
-            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
-            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            File data = new File("src\\arquivos\\login.txt");
+            if (data.exists()) {
+                FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
+                ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+
+                hashUsuarios = (HashMap<String, Pessoa>) objectIn.readObject();
+                fileIn.close();
+                objectIn.close();
+            // em caso de problema, podemos apagar o arquivo e ele vai reiniciar os cadastros
+            } else {
+                hashUsuarios.put("Administrador", null);
+                FileOutputStream fileOut = new FileOutputStream(data);
+                ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+                objectOut.writeObject(hashUsuarios);
+
+                objectOut.close();
+                fileOut.close();
+            }
             
-            hashUsuarios = (HashMap<String, Pessoa>) objectIn.readObject();
-            fileIn.close();
-            objectIn.close();
+            
             
         } catch (FileNotFoundException e) {
             System.out.println("Arq. não encontrado");
@@ -232,8 +249,9 @@ public class Login extends javax.swing.JFrame {
             }
         } else {
             JOptionPane.showMessageDialog(null, "Usuário não cadastrado.", "Aviso", JOptionPane.WARNING_MESSAGE);
-            resetTela();
         }
+        
+        resetTela();
     }//GEN-LAST:event_btnLoginActionPerformed
 
     public static void main(String args[]) {

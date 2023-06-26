@@ -13,6 +13,8 @@ import java.util.Date;
  * @author gustavo
  */
 public abstract class Pessoa implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 1L;
     // Atributos
     protected String nome;
     protected String username;
