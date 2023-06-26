@@ -614,13 +614,21 @@ public class CadastroInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnFinalizarCadastroJogadorActionPerformed
 
-    private void rbtSimTecnicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtSimTecnicoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtSimTecnicoActionPerformed
+    private void rbtSimTecnicoActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        rbtNaoTecnico.setSelected(false);
+    }                                             
 
-    private void rbtSimFreeAgentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtSimFreeAgentActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rbtSimFreeAgentActionPerformed
+    private void rbtSimFreeAgentActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        rbtNaoFreeAgent.setSelected(false);
+    }                                               
+
+    private void rbtNaoTecnicoActionPerformed(java.awt.event.ActionEvent evt) {                                              
+        rbtSimTecnico.setSelected(false);
+    }                                             
+
+    private void rbtNaoFreeAgentActionPerformed(java.awt.event.ActionEvent evt) {                                                
+        rbtSimFreeAgent.setSelected(false);
+    }
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
         int resp = JOptionPane.showConfirmDialog(null, "Deseja descartar os dados e voltar para a tela de login?", "Confirmar", JOptionPane.YES_NO_OPTION);
