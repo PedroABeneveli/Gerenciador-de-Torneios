@@ -447,7 +447,7 @@ public class CadastroInicial extends javax.swing.JFrame {
         
         // inicializa aqui pra ide nao reclamar
         String senhaCript = "";
-        if (String.valueOf(pswConfirmaSenha.getPassword()).equals(String.valueOf(pswSenha.getPassword()))) {
+        if (!String.valueOf(pswConfirmaSenha.getPassword()).equals(String.valueOf(pswSenha.getPassword()))) {
             JOptionPane.showMessageDialog(null, "Cofirmação de senha não coerente!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
             cadastroOk = false;
         } else {

@@ -5,11 +5,15 @@
  */
 package classes;
 
+import java.io.Serializable;
+
 /**
  *
  * @author gustavo
  */
-public class Avaliacao {
+public class Avaliacao implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 8L;
     
     // Atributos
     private double regras;

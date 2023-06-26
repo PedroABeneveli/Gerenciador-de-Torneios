@@ -1,26 +1,91 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
+import classes.Jogo;
 import classes.Torneio;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author pedro
- */
 public class BuscaTorneios extends javax.swing.JFrame {
 
     public static Torneio torneioSelecionado;
+    private ArrayList<Torneio> todosTorneios;
+    private ArrayList<Torneio> torneiosFiltrados;
+    private boolean pesquisouJogo;
     
     /**
      * Creates new form ListagemTorneios
      */
     public BuscaTorneios() {
         initComponents();
+        todosTorneios = new ArrayList<>();
+        
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            todosTorneios = (ArrayList<Torneio>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+        }
+        
+        montarTabela(todosTorneios);
+        estadoInicial();
+        
+        pesquisouJogo = false;
     }
-
+    
+    // habilita e desabilita os elementos da tela para seu estado inicial desejado
+    private void estadoInicial() {
+        txtNome.setText("");
+        frmData.setText("");
+        
+        txtNome.setEnabled(true);
+        frmData.setEnabled(true);
+        btnEscolherJogo.setEnabled(true);
+        btnVoltar.setEnabled(true);
+    }
+    
+    private void montarTabela(ArrayList<Torneio> listaTorneio) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "Jogo", "Data", "Participantes", "Nota"}, 0);
+        DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+        
+        for (int i = 0 ; i < listaTorneio.size() ; i++) {
+            String data = formatador.format(listaTorneio.get(i).getDataDeRealizacao());
+            Object linha[] = {listaTorneio.get(i).getNome(), 
+                              listaTorneio.get(i).getJogo().getNome(), 
+                              data,
+                              listaTorneio.get(i).getNumeroDeEquipes(),
+                              listaTorneio.get(i).calcularNota()};
+            modelo.addRow(linha);
+        }
+        
+        tblTorneios.setModel(modelo);
+        
+        tblTorneios.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblTorneios.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblTorneios.getColumnModel().getColumn(2).setPreferredWidth(20);
+        tblTorneios.getColumnModel().getColumn(3).setPreferredWidth(10);
+        tblTorneios.getColumnModel().getColumn(4).setPreferredWidth(10);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,9 +100,10 @@ public class BuscaTorneios extends javax.swing.JFrame {
         btnVoltar = new javax.swing.JButton();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
-        frmLancamento = new javax.swing.JFormattedTextField();
+        frmData = new javax.swing.JFormattedTextField();
         lblData = new javax.swing.JLabel();
         btnEscolherJogo = new javax.swing.JButton();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,6 +135,11 @@ public class BuscaTorneios extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblTorneios.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTorneiosMouseClicked(evt);
+            }
+        });
         scrTabela.setViewportView(tblTorneios);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
@@ -77,17 +148,26 @@ public class BuscaTorneios extends javax.swing.JFrame {
         lblNome.setText("Nome:");
 
         try {
-            frmLancamento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            frmData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
 
         lblData.setText("Data");
 
+        btnEscolherJogo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnEscolherJogo.setText("Escolher Jogo");
         btnEscolherJogo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEscolherJogoActionPerformed(evt);
+            }
+        });
+
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar32px.png"))); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
             }
         });
 
@@ -100,24 +180,26 @@ public class BuscaTorneios extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                            .addComponent(frmData, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnPesquisar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(btnVoltar))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblNome)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblData)
-                            .addComponent(frmLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEscolherJogo)
-                        .addGap(32, 32, 32))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblNome)
+                                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblData)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnEscolherJogo)
+                                .addGap(67, 67, 67)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -125,14 +207,16 @@ public class BuscaTorneios extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblNome)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEscolherJogo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblData)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(frmLancamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblData)
+                    .addComponent(btnEscolherJogo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(frmData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(btnPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(scrTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVoltar)
@@ -143,9 +227,83 @@ public class BuscaTorneios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEscolherJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherJogoActionPerformed
+        pesquisouJogo = true;
         BuscaJogos.vemBuscaTorneio = true;
         new BuscaJogos().setVisible(true);
     }//GEN-LAST:event_btnEscolherJogoActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        String nome;
+        nome = txtNome.getText();
+        // lista com os torneios a serem exibidos na tabela
+        torneiosFiltrados = new ArrayList<>();
+        // Se tem data
+        if (!pesquisouJogo || (pesquisouJogo && BuscaJogos.jogoSelecionado == null)) {
+            if (!frmData.getText().equals("  /  /    ")) {
+                try {
+                    // se a data for valida, podemos fazer a busca
+                    Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmData.getText());
+
+                    // procura em todos os elementos da lista pra ver aqueles que tem as partes dadas nos txtField e mesma data
+                    for (int i = 0 ; i < todosTorneios.size() ; i++) {
+                        Torneio torneio = todosTorneios.get(i);
+                        if (torneio.getNome().contains(nome) && torneio.getDataDeRealizacao().equals(data))
+                            torneiosFiltrados.add(torneio);
+                    }
+                } catch(ParseException e) {
+                    JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // procura em todos os elementos da lista pra ver aqueles que tem as partes dadas nos txtField
+                for (int i = 0 ; i < todosTorneios.size() ; i++) {
+                    Torneio torneio = todosTorneios.get(i);
+                    if (torneio.getNome().contains(nome))
+                        torneiosFiltrados.add(torneio);
+                }
+            }
+        } else {
+            Jogo jogo = BuscaJogos.jogoSelecionado;
+            if (!frmData.getText().equals("  /  /    ")) {
+                try {
+                    // se a data for valida, podemos fazer a busca
+                    Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmData.getText());
+
+                    // procura em todos os elementos da lista pra ver aqueles que tem as partes dadas nos txtField e mesma data
+                    for (int i = 0 ; i < todosTorneios.size() ; i++) {
+                        Torneio torneio = todosTorneios.get(i);
+                        if (torneio.getNome().contains(nome) && torneio.getDataDeRealizacao().equals(data) 
+                                && torneio.getJogo().equals(jogo))
+                            torneiosFiltrados.add(torneio);
+                    }
+                } catch(ParseException e) {
+                    JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                // procura em todos os elementos da lista pra ver aqueles que tem as partes dadas nos txtField
+                for (int i = 0 ; i < todosTorneios.size() ; i++) {
+                    Torneio torneio = todosTorneios.get(i);
+                    if (torneio.getNome().contains(nome) && torneio.getJogo().equals(jogo))
+                        torneiosFiltrados.add(torneio);
+                }
+            }
+        }
+        
+        if (!torneiosFiltrados.isEmpty())
+            montarTabela(torneiosFiltrados);
+        else
+            JOptionPane.showMessageDialog(null, "Nenhum torneio corresponde a esses parâmetros!", "Falha", JOptionPane.WARNING_MESSAGE);
+
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void tblTorneiosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTorneiosMouseClicked
+        int resp, idx = tblTorneios.getSelectedRow();
+        
+        if (idx >= 0 && idx < torneiosFiltrados.size()) {
+            torneioSelecionado = torneiosFiltrados.get(idx);
+            new MostrarTorneio().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_tblTorneiosMouseClicked
 
     /**
      * @param args the command line arguments
@@ -185,8 +343,9 @@ public class BuscaTorneios extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEscolherJogo;
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JFormattedTextField frmLancamento;
+    private javax.swing.JFormattedTextField frmData;
     private javax.swing.JLabel lblData;
     private javax.swing.JLabel lblNome;
     private javax.swing.JScrollPane scrTabela;

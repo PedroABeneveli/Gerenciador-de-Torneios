@@ -5,13 +5,16 @@
  */
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author gustavo
  */
-public class Partida {
+public class Partida implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 6L;
     // Atributos
     private int numeroDeMapas;
     private ArrayList<Integer> resultadosParciais;

@@ -308,6 +308,7 @@ public class CadastroJogo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnFinalizarCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFinalizarCadastroActionPerformed
@@ -405,9 +406,10 @@ public class CadastroJogo extends javax.swing.JFrame {
         // 0 = sim, 1 = nao
 
         if (resp == 0)  {
-            listaJogos.remove(BuscaJogos.jogoSelecionado);
+            listaJogos.remove(BuscaJogos.selecionadoIdx);
             boolean deuCerto = armazenarLista();
             if (deuCerto) {
+                System.out.println("Foi");
                 JOptionPane.showMessageDialog(null, "Jogo excluído com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
                 new BuscaJogos().setVisible(true);
                 this.dispose();

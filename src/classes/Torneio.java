@@ -5,6 +5,7 @@
  */
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,7 +13,9 @@ import java.util.Date;
  *
  * @author gustavo
  */
-public class Torneio {
+public class Torneio implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 5L;
     // Atributos
     private String nome;
     private int numeroDeEquipes;
@@ -48,6 +51,12 @@ public class Torneio {
     public Equipe vencedor() {
         // TODO
         return null;
+    }
+    
+    // com base nas avaliações vinculadas, calcula a nota média
+    public float calcularNota() {
+        // TODO
+        return 0;
     }
     
     // Getters e setters

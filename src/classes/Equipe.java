@@ -5,6 +5,7 @@
  */
 package classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 // import classes.Jogador;
 
@@ -12,8 +13,9 @@ import java.util.ArrayList;
  *
  * @author gustavo
  */
-public class Equipe {
-    
+public class Equipe implements Serializable {
+    // variavel para arquivos
+    private static final long serialVersionUID = 7L;
     // Atributos
     private boolean inscricao;
     private int colocacao;

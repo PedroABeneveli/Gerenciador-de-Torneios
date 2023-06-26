@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -33,7 +34,7 @@ public class BuscaJogos extends javax.swing.JFrame {
     private ArrayList<Jogo> jogosFiltrados;
     // jogo selecionado na tabela
     public static Jogo jogoSelecionado = null;
-    public static int selecionadoIdx = -1;
+    public static int selecionadoIdx;
     
     /**
      * Creates new form BuscaJogos
@@ -43,6 +44,8 @@ public class BuscaJogos extends javax.swing.JFrame {
         
         todosJogos = new ArrayList<>();
         jogosFiltrados = new ArrayList<>();
+        jogoSelecionado = null;
+        selecionadoIdx = -1;
         
         try {
             
@@ -62,6 +65,7 @@ public class BuscaJogos extends javax.swing.JFrame {
         }
         
         montarTabela(todosJogos);
+        jogosFiltrados = todosJogos;
         
         // coloca os valores iniciais dos campos e botoes
         txtCriadora.setEnabled(true);
@@ -85,12 +89,14 @@ public class BuscaJogos extends javax.swing.JFrame {
     
     private void montarTabela(ArrayList<Jogo> listaJogos) {
         DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "Criadora", "Publicadora", "Lançamento"}, 0);
+        DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
         
         for (int i = 0 ; i < listaJogos.size() ; i++) {
+            String data = formatador.format(listaJogos.get(i).getDataDeCriacao());
             Object linha[] = {listaJogos.get(i).getNome(), 
                               listaJogos.get(i).getCriadora(), 
                               listaJogos.get(i).getPublicadora(),
-                              listaJogos.get(i).getDataDeCriacao().toString()};
+                              data};
             modelo.addRow(linha);
         }
         
@@ -213,7 +219,7 @@ public class BuscaJogos extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(btnCadastro)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -302,9 +308,9 @@ public class BuscaJogos extends javax.swing.JFrame {
         publicadora = txtPublicadora.getText();
         criadora = txtCriadora.getText();
         // lista com os jogos a serem exibidos na tabela
-        jogosFiltrados.clear();
+        jogosFiltrados = new ArrayList<>();
         // Se tem data
-        if (!frmLancamento.getText().equals("  /  /    "))
+        if (!frmLancamento.getText().equals("  /  /    ")) {
             try {
                 // se a data for valida, podemos fazer a busca
                 Date data = new SimpleDateFormat("dd/MM/yyyy").parse(frmLancamento.getText());
@@ -319,7 +325,7 @@ public class BuscaJogos extends javax.swing.JFrame {
             } catch(ParseException e) {
                 JOptionPane.showMessageDialog(null, "Data inválida!", "Não foi possível realizar o cadastro", JOptionPane.ERROR_MESSAGE);
             }
-        else {
+        } else {
             // procura em todos os elementos da lista pra ver aqueles que tem as partes dadas nos txtField
             for (int i = 0 ; i < todosJogos.size() ; i++) {
                 Jogo jogo = todosJogos.get(i);
@@ -343,11 +349,11 @@ public class BuscaJogos extends javax.swing.JFrame {
         if (idx >= 0 && idx < jogosFiltrados.size()) {
             Jogo jogo = jogosFiltrados.get(idx);
             if (!vemAdmin) {
-                jogoSelecionado = jogo;
                 // confirma se o usuario quer selecionar esse jogo
                 resp = JOptionPane.showConfirmDialog(null, "Deseja selecionar o jogo " + jogo.getNome() + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
                 // 0 = sim, 1 = nao
                 if (resp == 0) {
+                    jogoSelecionado = jogo;
                     selecionadoIdx = idx;
                     this.dispose();
                 }
@@ -356,6 +362,7 @@ public class BuscaJogos extends javax.swing.JFrame {
                 // 0 = sim, 1 = nao
 
                 if (resp == 0) {
+                    jogoSelecionado = jogo;
                     selecionadoIdx = idx;
                     new CadastroJogo().setVisible(true);
                     this.dispose();
