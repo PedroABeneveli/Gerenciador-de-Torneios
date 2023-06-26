@@ -33,6 +33,7 @@ public class BuscaJogos extends javax.swing.JFrame {
     private ArrayList<Jogo> jogosFiltrados;
     // jogo selecionado na tabela
     public static Jogo jogoSelecionado = null;
+    public static int selecionadoIdx = -1;
     
     /**
      * Creates new form BuscaJogos
@@ -273,17 +274,24 @@ public class BuscaJogos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
-        if (vemAdmin) {
-            resetarOrigem();
-            new Admin().setVisible(true);
-            this.dispose();
-        } else {
-            resetarOrigem();
-            this.dispose();
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja encerrar a busca?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        // 0 = sim, 1 = nao
+
+        if (resp == 0) {
+            if (vemAdmin) {
+                resetarOrigem();
+                new Admin().setVisible(true);
+                this.dispose();
+            } else {
+                resetarOrigem();
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     private void btnCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastroActionPerformed
+        // pra saber na outra tela que não há um jogo selecionado
+        selecionadoIdx = -1;
         new CadastroJogo().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCadastroActionPerformed
@@ -339,13 +347,16 @@ public class BuscaJogos extends javax.swing.JFrame {
                 // confirma se o usuario quer selecionar esse jogo
                 resp = JOptionPane.showConfirmDialog(null, "Deseja selecionar o jogo " + jogo.getNome() + "?", "Confirmar", JOptionPane.YES_NO_OPTION);
                 // 0 = sim, 1 = nao
-                if (resp == 0)
+                if (resp == 0) {
+                    selecionadoIdx = idx;
                     this.dispose();
+                }
             } else {
                 resp = JOptionPane.showConfirmDialog(null, "Deseja ver os dados do jogo?", "Confirmar", JOptionPane.YES_NO_OPTION);
                 // 0 = sim, 1 = nao
 
                 if (resp == 0) {
+                    selecionadoIdx = idx;
                     new CadastroJogo().setVisible(true);
                     this.dispose();
                 }

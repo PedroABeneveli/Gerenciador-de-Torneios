@@ -184,15 +184,6 @@ public class CadastroInicial extends javax.swing.JFrame {
         });
 
         pnlCadastroJogador.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        pnlCadastroJogador.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                pnlCadastroJogadorAncestorAdded(evt);
-            }
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
-            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
-            }
-        });
 
         lblTecnico.setText("Deseja ser técnico de equipe?");
 
@@ -496,12 +487,8 @@ public class CadastroInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarOrganizadorActionPerformed
 
     private void btnCadastrarJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarJogadorActionPerformed
-            pnlCadastroJogador.setVisible(true);
+        pnlCadastroJogador.setVisible(true);
     }//GEN-LAST:event_btnCadastrarJogadorActionPerformed
-
-    private void pnlCadastroJogadorAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_pnlCadastroJogadorAncestorAdded
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pnlCadastroJogadorAncestorAdded
 
     private void btnCancelarCadastroJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarCadastroJogadorActionPerformed
         pnlCadastroJogador.setVisible(false);

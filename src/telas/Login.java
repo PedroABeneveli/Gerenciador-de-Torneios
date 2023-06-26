@@ -42,8 +42,8 @@ public class Login extends javax.swing.JFrame {
                 hashUsuarios = (HashMap<String, Pessoa>) objectIn.readObject();
                 fileIn.close();
                 objectIn.close();
-            // em caso de problema, podemos apagar o arquivo e ele vai reiniciar os cadastros
             } else {
+                // em caso de problema, podemos apagar o arquivo e ele vai reiniciar os cadastros
                 hashUsuarios.put("Administrador", null);
                 FileOutputStream fileOut = new FileOutputStream(data);
                 ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
