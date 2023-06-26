@@ -58,6 +58,7 @@ public class BuscaJogadores extends javax.swing.JFrame {
         }
         
         montarLista(usuarios);
+        jogFiltrados = listaJogadores;
         
         montarTabela(listaJogadores);
         estadoInicial();
