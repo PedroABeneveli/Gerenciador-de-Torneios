@@ -48,6 +48,7 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
         filtroOrganizadores = organizadores;
         
         montarLista(hashUsers);
+        montarTabela(organizadores);
         estadoInicial();
     }
     
@@ -101,6 +102,7 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
         tblOrganizadores.getColumnModel().getColumn(0).setPreferredWidth(50);
         tblOrganizadores.getColumnModel().getColumn(1).setPreferredWidth(50);
         tblOrganizadores.getColumnModel().getColumn(2).setPreferredWidth(50);
+        tblOrganizadores.getColumnModel().getColumn(3).setPreferredWidth(20);
     }
     
     private void estadoInicial() {
@@ -136,6 +138,8 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Busca de Organizadores");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         scrTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Organizadores", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
@@ -242,6 +246,7 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed

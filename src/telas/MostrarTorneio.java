@@ -173,6 +173,11 @@ public class MostrarTorneio extends javax.swing.JFrame {
 
         btnInscricaoEdicao.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         btnInscricaoEdicao.setText("Inscreva-se!");
+        btnInscricaoEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInscricaoEdicaoActionPerformed(evt);
+            }
+        });
 
         lblJogo.setText("Jogo:");
 
@@ -267,6 +272,10 @@ public class MostrarTorneio extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnInscricaoEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscricaoEdicaoActionPerformed
+        new InscricaoEquipe().setVisible(true);
+    }//GEN-LAST:event_btnInscricaoEdicaoActionPerformed
 
     /**
      * @param args the command line arguments

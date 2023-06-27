@@ -33,7 +33,6 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
         lblBemVindo = new javax.swing.JLabel();
         btnCriarTorneio = new javax.swing.JButton();
         btnTorneiosCriados = new javax.swing.JButton();
-        btnGerenciarTorneio = new javax.swing.JButton();
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -64,16 +63,6 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
             }
         });
 
-        btnGerenciarTorneio.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        btnGerenciarTorneio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Football_2-31_icon-icons.com_72101.png"))); // NOI18N
-        btnGerenciarTorneio.setText("Gerenciar torneio");
-        btnGerenciarTorneio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnGerenciarTorneio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGerenciarTorneioActionPerformed(evt);
-            }
-        });
-
         btnSair.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/enter32px.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -94,16 +83,14 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
                         .addComponent(lblBemVindo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(75, 75, 75))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnTorneiosCriados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCriarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnGerenciarTorneio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(39, 39, 39))
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,9 +98,7 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
                 .addGap(61, 61, 61)
                 .addComponent(lblBemVindo)
                 .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnCriarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGerenciarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCriarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnTorneiosCriados, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +116,8 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
     }//GEN-LAST:event_btnCriarTorneioActionPerformed
 
     private void btnTorneiosCriadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTorneiosCriadosActionPerformed
-        new TorneiosCriadosENota().setVisible(true);
+        new BuscaTorneios().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTorneiosCriadosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -143,11 +129,6 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
             this.dispose();
         }
     }//GEN-LAST:event_btnSairActionPerformed
-
-    private void btnGerenciarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGerenciarTorneioActionPerformed
-        // nao sei, acho que a gente pode reaproveitar o botao de torneios criados pra isso
-        new TorneiosCriadosENota().setVisible(true);
-    }//GEN-LAST:event_btnGerenciarTorneioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,7 +167,6 @@ public class TelaOrganizador extends javax.swing.JFrame implements TelaInicial {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCriarTorneio;
-    private javax.swing.JButton btnGerenciarTorneio;
     private javax.swing.JButton btnSair;
     private javax.swing.JButton btnTorneiosCriados;
     private javax.swing.JLabel lblBemVindo;

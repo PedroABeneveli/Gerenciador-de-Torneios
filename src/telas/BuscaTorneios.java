@@ -29,13 +29,14 @@ public class BuscaTorneios extends javax.swing.JFrame {
      */
     public BuscaTorneios() {
         initComponents();
+        
         todosTorneios = new ArrayList<>();
         if (Login.usuarioLogado instanceof Organizador) {
             todosTorneios = ((Organizador) Login.usuarioLogado).getTorneiosCriados();
         } else {
             try {
 
-                FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
+                FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\torneios.txt"));
                 ObjectInputStream objectIn = new ObjectInputStream(fileIn);
 
                 todosTorneios = (ArrayList<Torneio>) objectIn.readObject();
@@ -111,6 +112,7 @@ public class BuscaTorneios extends javax.swing.JFrame {
         btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         scrTabela.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Torneios", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 12))); // NOI18N
 
@@ -234,6 +236,7 @@ public class BuscaTorneios extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEscolherJogoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEscolherJogoActionPerformed
@@ -309,9 +312,25 @@ public class BuscaTorneios extends javax.swing.JFrame {
         int resp, idx = tblTorneios.getSelectedRow();
         
         if (idx >= 0 && idx < torneiosFiltrados.size()) {
-            torneioSelecionado = torneiosFiltrados.get(idx);
-            new MostrarTorneio().setVisible(true);
-            this.dispose();
+            if (Login.usuarioLogado == null) {
+                resp = JOptionPane.showConfirmDialog(null, "Deseja excluir esse torneio do sistema?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                // 0 = sim, 1 = nao
+/*
+                if (resp == 0) {
+                    torneios
+                    boolean deuCerto = armazenarHash(usuarios);
+                    if (deuCerto) {
+                        JOptionPane.showMessageDialog(null, "Jogador excluído com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                        // refaz a lista e já exibe a modificada, sem precisar ler o arquivo novamente
+                        montarLista(usuarios);
+                        montarTabela(listaJogadores);
+                    }                    
+                }*/    
+            } else {
+                torneioSelecionado = torneiosFiltrados.get(idx);
+                new MostrarTorneio().setVisible(true);
+                this.dispose();
+            }
         }
     }//GEN-LAST:event_tblTorneiosMouseClicked
 
@@ -319,12 +338,14 @@ public class BuscaTorneios extends javax.swing.JFrame {
         if (Login.usuarioLogado == null) {
             // se é um administrador, volta para tela Admin
             new Admin().setVisible(true);
-            this.dispose();
         } else if (Login.usuarioLogado instanceof Jogador) {
             // se é jogador, volta pra sua tela inicial
             new TelaJogador().setVisible(true);
-            this.dispose();
+        } else if (Login.usuarioLogado instanceof Organizador) {
+            // se e organizador, volta pra sua tela
+            new TelaOrganizador().setVisible(true);
         }
+         this.dispose();
     }//GEN-LAST:event_btnVoltarActionPerformed
 
     /**

@@ -17,25 +17,20 @@ public class Equipe implements Serializable {
     // variavel para arquivos
     private static final long serialVersionUID = 7L;
     // Atributos
-    private boolean inscricao;
     private int colocacao;
     private String nome;
     private ArrayList<Integer> numeroVitoriasDerrotas;
     private int pontuacao;
     private ArrayList<Jogador> jogadores;
+    private Jogador representante;
     private String email;
-    private String login;
-    private String senha;
     private Avaliacao avaliacao; 
     
     // Construtor
-    public Equipe(boolean inscricao, int colocacao, String nome, ArrayList<Integer> numeroVitoriasDerrotas, int pontuacao, ArrayList<Jogador> jogadores) {
-        this.inscricao = inscricao;
-        this.colocacao = colocacao;
+    public Equipe(String nome, ArrayList<Jogador> jogadores, Jogador representante) {
         this.nome = nome;
-        this.numeroVitoriasDerrotas = numeroVitoriasDerrotas;
-        this.pontuacao = pontuacao;
         this.jogadores = jogadores;
+        this.representante = representante;
     }
     
     // Método que retorna a razão entre o número de vitórias e o número de derrotas da equipe
@@ -48,29 +43,11 @@ public class Equipe implements Serializable {
         jogadores.add(jogador);
     }
     
-    public void criarLogin(String login) {
-        //se nao ha nenhum login igual existente
-        this.login = login;
-    }
-    
-    public void criarSenha(String senha) {
-        //se a senha estiver de acordo
-        this.senha = senha;
-    }
-    
     public void informarEmailContato(String email) {
         this.email = email;
     }
 
     // Getters e setters
-    public boolean isInscricao() {
-        return inscricao;
-    }
-
-    public void setInscricao(boolean inscricao) {
-        this.inscricao = inscricao;
-    }
-
     public int getColocacao() {
         return colocacao;
     }

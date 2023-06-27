@@ -42,6 +42,8 @@ public class Admin extends javax.swing.JFrame {
         btnOrganizadores = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Administrador");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnSair.setText("Sair");
@@ -77,6 +79,11 @@ public class Admin extends javax.swing.JFrame {
 
         btnOrganizadores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/organizador32px.png"))); // NOI18N
         btnOrganizadores.setText("Gerenciar Organizadores");
+        btnOrganizadores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOrganizadoresActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -144,6 +151,11 @@ public class Admin extends javax.swing.JFrame {
         new BuscaJogadores().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnJogadoresActionPerformed
+
+    private void btnOrganizadoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOrganizadoresActionPerformed
+        new BuscaOrganizadores().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnOrganizadoresActionPerformed
 
     /**
      * @param args the command line arguments

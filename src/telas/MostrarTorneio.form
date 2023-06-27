@@ -255,6 +255,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Inscreva-se!"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnInscricaoEdicaoActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtVencedor">
     </Component>

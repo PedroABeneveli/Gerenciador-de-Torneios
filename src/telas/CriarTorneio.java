@@ -38,7 +38,7 @@ public class CriarTorneio extends javax.swing.JFrame {
         // abre o arquivo com a lista de torneios
         try {
             
-            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\jogos.txt"));
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\torneios.txt"));
             ObjectInputStream objectIn = new ObjectInputStream(fileIn);
             
             listaTorneios = (ArrayList<Torneio>) objectIn.readObject();

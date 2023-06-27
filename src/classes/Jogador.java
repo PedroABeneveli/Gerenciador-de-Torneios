@@ -66,9 +66,8 @@ public class Jogador extends Pessoa {
         this.email = email;
     }
     
-    // Atualiza os dados dos torneios anteriores e das equipes anteriores do jogador ao final de um torneio
-    public void atualizarDados(Torneio torneio, Equipe equipe) {
-        //this.torneiosAnteriores.add(torneio);
+    // Atualiza os dados das equipes 
+    public void atualizarDados(Equipe equipe) {
         this.equipes.add(equipe);
     }
 

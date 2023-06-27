@@ -20,6 +20,7 @@ public class Partida implements Serializable {
     private ArrayList<Integer> resultadosParciais;
     private ArrayList<String> personagens;
     private Torneio torneio;
+    private Equipe equipe1, equipe2;
     
     // Construtores
     public Partida() {

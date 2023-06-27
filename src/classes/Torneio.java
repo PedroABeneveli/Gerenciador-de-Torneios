@@ -23,7 +23,7 @@ public class Torneio implements Serializable {
     private Date DataDeRealizacao;
     private String formato;
     private int numeroDeEtapas;
-    private boolean ativo;
+    private boolean ativo = true;       // um torneio sempre eh criado ativo
     private Jogo jogo;
     private ArrayList<Partida> partidas;
     private ArrayList<Avaliacao> avaliacoes;
@@ -138,6 +138,10 @@ public class Torneio implements Serializable {
 
     public void setAvaliacoes(ArrayList<Avaliacao> avaliacoes) {
         this.avaliacoes = avaliacoes;
+    }
+    
+    public void addAvaliacoes(Avaliacao avaliacao) {
+        this.avaliacoes.add(avaliacao);
     }
     
     

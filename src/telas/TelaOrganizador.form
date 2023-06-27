@@ -36,7 +36,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="lblBemVindo" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="36" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -44,13 +44,10 @@
                           <Component id="btnCriarTorneio" min="-2" pref="334" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="btnGerenciarTorneio" max="32767" attributes="0"/>
-                          <Component id="btnSair" min="-2" pref="309" max="-2" attributes="0"/>
-                      </Group>
+                      <Component id="btnSair" min="-2" pref="309" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -60,10 +57,7 @@
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
               <Component id="lblBemVindo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnCriarTorneio" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
-                  <Component id="btnGerenciarTorneio" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
-              </Group>
+              <Component id="btnCriarTorneio" min="-2" pref="81" max="-2" attributes="0"/>
               <EmptySpace pref="96" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnTorneiosCriados" alignment="3" min="-2" pref="81" max="-2" attributes="0"/>
@@ -119,25 +113,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTorneiosCriadosActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnGerenciarTorneio">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Ubuntu" size="24" style="0"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/imagens/Football_2-31_icon-icons.com_72101.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Gerenciar torneio"/>
-        <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-          <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
-            <LineBorder/>
-          </Border>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGerenciarTorneioActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnSair">
