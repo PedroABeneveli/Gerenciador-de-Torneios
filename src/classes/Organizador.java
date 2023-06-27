@@ -46,24 +46,6 @@ public class Organizador extends Pessoa {
         return new TelaOrganizador();
     }
     
-    // Implementação do método abstrato criarLogin da superclasse abstrata Pessoa, verifica se já existe um login igual ao cadastrado no sistema
-    @Override
-    public void criarLogin(String login) {
-        this.username = login;
-    }
-    
-    // Implementação do método abstrato criarSenha da superclasse abstrata Pessoa, verifica se já existe uma senha igual à cadastrada no sistema
-    @Override
-    public void criarSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    // Implementação do método abstrato informarEmailContato da superclasse abstrata Pessoa, verifica se já existe um email igual ao cadastrado no sistema
-    @Override
-    public void informarEmailContato(String email) {
-        this.email = email;
-    }
-    
     // Calcula a avaliação média dos seus torneios criados
     public double calculaAvaliação() {
         if (torneiosCriados.size() > 0) {
@@ -75,7 +57,12 @@ public class Organizador extends Pessoa {
         }
         return -1;
     }
-
+    
+    // adicionar um novo torneio
+    public void addTorneio(Torneio torneio) {
+        this.torneiosCriados.add(torneio);
+    }
+    
     // Getters e setters
     public String getUsername() {
         return username;
@@ -100,15 +87,7 @@ public class Organizador extends Pessoa {
     public void setTorneiosCriados(ArrayList<Torneio> torneiosCriados) {
         this.torneiosCriados = torneiosCriados;
     }
-/*
-    public Torneio getTorneio() {
-        return torneio;
-    }
-
-    public void setTorneio(Torneio torneio) {
-        this.torneio = torneio;
-    }
-*/
+    
     public String getNome() {
         return nome;
     }

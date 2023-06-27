@@ -1,13 +1,20 @@
 package telas;
 
+import classes.Avaliacao;
 import classes.Organizador;
 import classes.Jogador;
+import classes.Partida;
 import classes.Torneio;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import javax.swing.table.DefaultTableModel;
 
 public class MostrarTorneio extends javax.swing.JFrame {
     
     private Torneio torneioAtual;
+    private Avaliacao avaliacaoUsuario;
     
     public MostrarTorneio() {
         initComponents();
@@ -28,7 +35,6 @@ public class MostrarTorneio extends javax.swing.JFrame {
         } else {
             txtVencedor.setText(torneioAtual.vencedor().getNome());
             lblAcontecendo.setVisible(false);
-            // esse botão so deve aparecer se acabou o torneio
             btnAvaliacao.setEnabled(true);
         }
         txtJogo.setText(torneioAtual.getJogo().getNome());
@@ -51,13 +57,43 @@ public class MostrarTorneio extends javax.swing.JFrame {
     
     // formata o toString do date pra uma string que colocamos no fmrData
     private String formatarData(Date data) {
-        // TODO
-        return "";
+        DateFormat formatador = new SimpleDateFormat("ddMMyyyy");
+        String quando = formatador.format(data);
+        return quando;
     }
     
     // monta as tabelas, se eh pra montar passa o argumento como true
     private void montarTabelas(boolean tabelaEquipe, boolean tabelaPartida) {
-        //TODO
+        if (tabelaEquipe) {
+            ArrayList<Avaliacao> listaAva = torneioAtual.getAvaliacoes();
+            DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Equipe"}, 0);
+
+            for (int i = 0 ; i < listaAva.size() ; i++) {
+                Object linha[] = {listaAva.get(i).getEquipe().getNome()};
+                modelo.addRow(linha);
+            }
+
+            tblEquipes.setModel(modelo);
+
+            tblEquipes.getColumnModel().getColumn(0).setPreferredWidth(50);
+        }
+        if (tabelaPartida) {
+            ArrayList<Partida> listaPartidas = torneioAtual.getPartidas();
+            DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Equipe 1", "Equipe 2", "Vencedor"}, 0);
+
+            for (int i = 0 ; i < listaPartidas.size() ; i++) {
+                Object linha[] = {listaPartidas.get(i).getEquipe1().getNome(), 
+                                  listaPartidas.get(i).getEquipe2().getNome(), 
+                                  listaPartidas.get(i).getVencedor().getNome()};
+                modelo.addRow(linha);
+            }
+
+            tblPartidas.setModel(modelo);
+
+            tblPartidas.getColumnModel().getColumn(0).setPreferredWidth(50);
+            tblPartidas.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tblPartidas.getColumnModel().getColumn(2).setPreferredWidth(50);
+        }
     }
     
     private void setTxtFields (boolean estado) {
@@ -98,6 +134,7 @@ public class MostrarTorneio extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Torneio");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         lblNomeTorneio.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         lblNomeTorneio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png"))); // NOI18N
@@ -134,6 +171,11 @@ public class MostrarTorneio extends javax.swing.JFrame {
 
         btnSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnSair.setText("Sair");
+        btnSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSairActionPerformed(evt);
+            }
+        });
 
         lblVencedor.setText("Equipe Vencedora:");
 
@@ -276,6 +318,11 @@ public class MostrarTorneio extends javax.swing.JFrame {
     private void btnInscricaoEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInscricaoEdicaoActionPerformed
         new InscricaoEquipe().setVisible(true);
     }//GEN-LAST:event_btnInscricaoEdicaoActionPerformed
+
+    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
+        new BuscaTorneios().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnSairActionPerformed
 
     /**
      * @param args the command line arguments

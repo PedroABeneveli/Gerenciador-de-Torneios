@@ -19,19 +19,17 @@ public class Partida implements Serializable {
     private int numeroDeMapas;
     private ArrayList<Integer> resultadosParciais;
     private ArrayList<String> personagens;
-    private Torneio torneio;
-    private Equipe equipe1, equipe2;
+    private Equipe equipe1, equipe2, vencedor;
     
     // Construtores
     public Partida() {
     
     }
 
-    public Partida(int numeroDeMapas, ArrayList<Integer> resultadosParciais, ArrayList<String> personagens, Torneio torneio) {
+    public Partida(int numeroDeMapas, ArrayList<Integer> resultadosParciais, ArrayList<String> personagens) {
         this.numeroDeMapas = numeroDeMapas;
         this.resultadosParciais = resultadosParciais;
         this.personagens = personagens;
-        this.torneio = torneio;
     }
     
     // Getters e setters
@@ -57,6 +55,30 @@ public class Partida implements Serializable {
 
     public void setPersonagens(ArrayList<String> personagens) {
         this.personagens = personagens;
+    }
+
+    public Equipe getEquipe1() {
+        return equipe1;
+    }
+
+    public void setEquipe1(Equipe equipe1) {
+        this.equipe1 = equipe1;
+    }
+
+    public Equipe getEquipe2() {
+        return equipe2;
+    }
+
+    public void setEquipe2(Equipe equipe2) {
+        this.equipe2 = equipe2;
+    }
+
+    public Equipe getVencedor() {
+        return vencedor;
+    }
+
+    public void setVencedor(Equipe vencedor) {
+        this.vencedor = vencedor;
     }
     
 }

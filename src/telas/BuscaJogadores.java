@@ -56,6 +56,7 @@ public class BuscaJogadores extends javax.swing.JFrame {
             if (valor.getValue() instanceof Jogador)
                 listaJogadores.add((Jogador) valor.getValue());
         }
+        jogadorSelecionado = null;
         
         montarLista(usuarios);
         jogFiltrados = listaJogadores;
@@ -303,7 +304,7 @@ public class BuscaJogadores extends javax.swing.JFrame {
         
         jogFiltrados = new ArrayList<>();
         for (Jogador jogador : listaJogadores) {
-            if (jogador.getUsername().contains(txtUsername.getName()) 
+            if (jogador.getUsername().contains(txtUsername.getText()) 
                     && jogador.isTecnico() == ehTecnico && jogador.isFreeAgent() == ehFreeAgent)
                 jogFiltrados.add(jogador);
         }

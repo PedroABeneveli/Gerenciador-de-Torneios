@@ -5,7 +5,9 @@
 package telas;
 
 import classes.Jogo;
+import classes.Pessoa;
 import classes.Torneio;
+import classes.Organizador;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -17,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +31,8 @@ public class CriarTorneio extends javax.swing.JFrame {
     private ArrayList<Torneio> listaTorneios;
     // atributo para controlar se o usuário já selecionou um jogo
     private boolean pesquisouJogo;
+    // torneio criado
+    private Torneio torneioCriado;
     
     /**
      * Creates new form CriarTorneio
@@ -90,6 +95,56 @@ public class CriarTorneio extends javax.swing.JFrame {
             
             return true;
             
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+            return false;
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+            return false;
+        }
+    }
+    
+    // salva a alteracao que sera feita no organizador
+    private boolean armazenarMudancasHash() {
+        HashMap<String, Pessoa> hashUsers = new HashMap<>();
+        // faz a leitura do arquivo login.txt
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            hashUsers = (HashMap<String, Pessoa>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+            return false;
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream input");
+            return false;
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+            return false;
+        }
+        
+        // salva o novo torneio na lista de torneios do organizador e atualiza a hashTable
+        ((Organizador) Login.usuarioLogado).addTorneio(torneioCriado);
+        hashUsers.replace(Login.usuarioLogado.getUsername(), (Organizador) Login.usuarioLogado);       
+         
+        // salva a mudanca na hash
+        try {
+
+            FileOutputStream fileOut = new FileOutputStream(new File("src\\arquivos\\login.txt"));
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+
+            objectOut.writeObject(hashUsers);
+
+            objectOut.close();
+            fileOut.close();
+
+            return true;
+
         } catch (FileNotFoundException e) {
             System.out.println("Arq. não encontrado");
             return false;
@@ -291,8 +346,12 @@ public class CriarTorneio extends javax.swing.JFrame {
             try {
                 Date dataRealizacao = new SimpleDateFormat("dd/MM/yyyy").parse(frmData.getText());
                 Torneio torneio = new Torneio(txtNome.getText(), dataRealizacao, txtFormato.getText(), Integer.parseInt(txtNumEtapas.getText()), BuscaJogos.jogoSelecionado);
+                torneioCriado = torneio;
                 listaTorneios.add(torneio);
                 boolean deuCerto = armazenarLista();
+                if (Login.usuarioLogado instanceof Organizador) {
+                    armazenarMudancasHash();
+                }
                 if (deuCerto) {
                     JOptionPane.showMessageDialog(null, "Torneio criado com sucesso!", "Sucesso!", JOptionPane.PLAIN_MESSAGE);
                     new TelaOrganizador().setVisible(true);

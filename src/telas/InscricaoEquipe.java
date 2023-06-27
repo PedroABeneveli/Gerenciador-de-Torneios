@@ -41,6 +41,7 @@ public class InscricaoEquipe extends javax.swing.JFrame {
         listaJogadores = new ArrayList<>();
         listaJogadores.add((Jogador) Login.usuarioLogado);
         buscouJogador = false;
+        
         montarTxaCmb();
         estadoInicial();
     }
@@ -51,8 +52,7 @@ public class InscricaoEquipe extends javax.swing.JFrame {
         txtEmail.setText("");
         txaJogadores.setText("");
         
-        txaJogadores.setEditable(false);
-        txaJogadores.setEnabled(true);
+        txaJogadores.setEnabled(false);
         txtEmail.setEnabled(true);
         txtNome.setEnabled(true);
         btnAdicionarJogador.setEnabled(true);
@@ -71,7 +71,8 @@ public class InscricaoEquipe extends javax.swing.JFrame {
         String txtArea = "";
         for (Jogador jogador : listaJogadores) {
             cmbRepresentante.addItem(jogador.getUsername());
-            txtArea += jogador.getUsername() + '\n';
+            txtArea += jogador.getUsername();
+            txtArea += "\n";
         }           
         txaJogadores.setText(txtArea);
     }
@@ -204,6 +205,8 @@ public class InscricaoEquipe extends javax.swing.JFrame {
         btnAtualizar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Inscrição");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         lblNome.setText("Nome da Equipe:");
 
@@ -321,14 +324,15 @@ public class InscricaoEquipe extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        new MostrarTorneio().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnAdicionarJogadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarJogadorActionPerformed
+        buscouJogador = true;
         new BuscaJogadores().setVisible(true);
     }//GEN-LAST:event_btnAdicionarJogadorActionPerformed
 

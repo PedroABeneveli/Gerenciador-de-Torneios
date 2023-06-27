@@ -33,7 +33,6 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
         btnDados = new javax.swing.JButton();
         lblBemVindo = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
-        btnRanqueamento = new javax.swing.JButton();
         btnEquipes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -72,16 +71,6 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
             }
         });
 
-        btnRanqueamento.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        btnRanqueamento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/goal_analytics_increase_stats_chart_icon_143362.png"))); // NOI18N
-        btnRanqueamento.setText("Ranqueamento");
-        btnRanqueamento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        btnRanqueamento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRanqueamentoActionPerformed(evt);
-            }
-        });
-
         btnEquipes.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         btnEquipes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/people_group_icon_188185.png"))); // NOI18N
         btnEquipes.setText("Equipes");
@@ -97,25 +86,22 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(125, 125, 125)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(btnEquipes, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(200, 200, 200)
+                        .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnProcurarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(202, 202, 202)
-                        .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(btnRanqueamento, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(125, 125, 125)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEquipes, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(200, 200, 200)
-                                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblBemVindo)
-                        .addGap(14, 14, 14)))
+                                .addComponent(btnProcurarTorneio, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(202, 202, 202)
+                                .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblBemVindo)
+                                .addGap(14, 14, 14)))))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -129,9 +115,7 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(3, 3, 3)
                         .addComponent(btnDados, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(29, 29, 29)
-                .addComponent(btnRanqueamento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(139, 139, 139)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEquipes, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -144,10 +128,12 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
 
     private void btnProcurarTorneioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcurarTorneioActionPerformed
         new BuscaTorneios().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnProcurarTorneioActionPerformed
 
     private void btnDadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDadosActionPerformed
         new DadosJogador().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnDadosActionPerformed
 
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
@@ -160,12 +146,9 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
         }
     }//GEN-LAST:event_btnSairActionPerformed
 
-    private void btnRanqueamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRanqueamentoActionPerformed
-        new RanqueamentoJogadores().setVisible(true);
-    }//GEN-LAST:event_btnRanqueamentoActionPerformed
-
     private void btnEquipesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEquipesActionPerformed
-        // nao sei, aqui eh pra mostrar os torneios inscritos?
+        new BuscaEquipe().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEquipesActionPerformed
 
     /**
@@ -208,7 +191,6 @@ public class TelaJogador extends javax.swing.JFrame implements TelaInicial {
     private javax.swing.JButton btnDados;
     private javax.swing.JButton btnEquipes;
     private javax.swing.JButton btnProcurarTorneio;
-    private javax.swing.JButton btnRanqueamento;
     private javax.swing.JButton btnSair;
     private javax.swing.JLabel lblBemVindo;
     // End of variables declaration//GEN-END:variables

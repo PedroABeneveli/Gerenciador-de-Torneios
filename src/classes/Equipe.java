@@ -7,6 +7,7 @@ package classes;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 // import classes.Jogador;
 
 /**
@@ -19,7 +20,7 @@ public class Equipe implements Serializable {
     // Atributos
     private int colocacao;
     private String nome;
-    private ArrayList<Integer> numeroVitoriasDerrotas;
+    private ArrayList<Integer> numeroVitoriasDerrotas = new ArrayList<>(Arrays.asList(1, 1));
     private int pontuacao;
     private ArrayList<Jogador> jogadores;
     private Jogador representante;

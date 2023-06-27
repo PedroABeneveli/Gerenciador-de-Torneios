@@ -30,6 +30,9 @@ public class BuscaTorneios extends javax.swing.JFrame {
     public BuscaTorneios() {
         initComponents();
         
+        //inicializa o selecionado como null
+        torneioSelecionado = null;
+        // ou le os torneios criados do organizador, ou le todos do sistema
         todosTorneios = new ArrayList<>();
         if (Login.usuarioLogado instanceof Organizador) {
             todosTorneios = ((Organizador) Login.usuarioLogado).getTorneiosCriados();
@@ -51,6 +54,7 @@ public class BuscaTorneios extends javax.swing.JFrame {
                 System.out.println("Nao achei a classe");
             }
         }
+        torneiosFiltrados = todosTorneios;
         
         montarTabela(todosTorneios);
         estadoInicial();

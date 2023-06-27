@@ -48,24 +48,6 @@ public class Jogador extends Pessoa {
         return new TelaJogador();
     }
     
-    // Implementação do método abstrato criarLogin da superclasse abstrata Pessoa, verifica se já existe um login igual ao cadastrado no sistema
-    @Override
-    public void criarLogin(String login) {
-        this.username = login;
-    }
-    
-    // Implementação do método abstrato criarSenha da superclasse abstrata Pessoa, verifica se já existe uma senha igual à cadastrada no sistema
-    @Override
-    public void criarSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    // Implementação do método abstrato informarEmailContato da superclasse abstrata Pessoa, verifica se já existe um email igual ao cadastrado no sistema
-    @Override
-    public void informarEmailContato(String email) {
-        this.email = email;
-    }
-    
     // Atualiza os dados das equipes 
     public void atualizarDados(Equipe equipe) {
         this.equipes.add(equipe);

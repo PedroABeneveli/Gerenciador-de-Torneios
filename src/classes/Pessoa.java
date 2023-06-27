@@ -50,12 +50,6 @@ public abstract class Pessoa implements Serializable {
     
     // Assinatura dos métodos abstratos getTela, criarLogin, criarSenha e informarEmailContato
     public abstract TelaInicial getTela();
-    
-    public abstract void criarLogin(String login);
-    
-    public abstract void criarSenha(String senha);
-    
-    public abstract void informarEmailContato(String email);
 
     // Getters e setters
     public String getNome() {
