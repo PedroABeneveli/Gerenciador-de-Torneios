@@ -49,8 +49,14 @@ public class Torneio implements Serializable {
     
     // com base nas avaliações vinculadas, calcula a nota média
     public float calcularNota() {
-        // TODO
-        return 0;
+        if (avaliacoes.size() > 0) {
+            long soma = 0;
+            for (Avaliacao avaliacao : avaliacoes) {
+                soma += avaliacao.calculaAvaliacao();
+            }
+            return soma / avaliacoes.size();
+        }
+        return -1;
     }
     
     // Getters e setters

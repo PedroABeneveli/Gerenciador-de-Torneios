@@ -18,7 +18,7 @@ public class Organizador extends Pessoa {
     private static final long serialVersionUID = 3L;
     // Atributos
     private double nota;
-    private ArrayList<Torneio> torneiosCriados;
+    private ArrayList<Torneio> torneiosCriados = new ArrayList<>();
     
     // Construtores
     public Organizador() {
@@ -64,11 +64,17 @@ public class Organizador extends Pessoa {
         this.email = email;
     }
     
-    /*// Finaliza um torneio
-    public void finalizarTorneio() {
-        torneiosCriados.add(torneio);
-        torneio = null;
-    } */
+    // Calcula a avaliação média dos seus torneios criados
+    public double calculaAvaliação() {
+        if (torneiosCriados.size() > 0) {
+            long soma = 0;
+            for (Torneio torneio : torneiosCriados) {
+                soma += torneio.calcularNota();
+            }
+            return soma / torneiosCriados.size();
+        }
+        return -1;
+    }
 
     // Getters e setters
     public String getUsername() {
