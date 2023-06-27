@@ -1,22 +1,120 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package telas;
 
-/**
- *
- * @author pedro
- */
-public class BuscaOrganizadores extends javax.swing.JFrame {
+import classes.Organizador;
+import classes.Pessoa;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
+public class BuscaOrganizadores extends javax.swing.JFrame {
+    // hashMap com todos os ususarios, lida por arquivo
+    private HashMap<String, Pessoa> hashUsers;
+    // listas para montar a tabela
+    private ArrayList<Organizador> organizadores;
+    private ArrayList<Organizador> filtroOrganizadores;
+    
     /**
      * Creates new form BuscaOrganizadores
      */
     public BuscaOrganizadores() {
         initComponents();
+        
+        // faz a leitura do arquivo login.txt
+        try {
+            
+            FileInputStream fileIn = new FileInputStream(new File("src\\arquivos\\login.txt"));
+            ObjectInputStream objectIn = new ObjectInputStream(fileIn);
+            
+            hashUsers = (HashMap<String, Pessoa>) objectIn.readObject();
+            fileIn.close();
+            objectIn.close();
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+        } catch (ClassNotFoundException e) {
+            System.out.println("Nao achei a classe");
+        }
+        filtroOrganizadores = organizadores;
+        
+        montarLista(hashUsers);
+        estadoInicial();
     }
-
+    
+    // cria a lista de organizadores a partir da hash dada
+    private void montarLista(HashMap<String, Pessoa> hash) {
+        organizadores = new ArrayList<>();
+        for (Map.Entry<String, Pessoa> valor : hash.entrySet()) {
+            if (valor.getValue() instanceof Organizador)
+                organizadores.add((Organizador) valor.getValue());
+        }
+    }
+    
+    // vai receber a hash e armazenar no arquivo login.txt
+    private boolean armazenarHash(HashMap<String, Pessoa> hash) {
+        // escreve a hash no arquivo
+        try {
+            
+            FileOutputStream fileOut = new FileOutputStream(new File("src\\arquivos\\login.txt"));
+            ObjectOutputStream objectOut = new ObjectOutputStream(fileOut);
+            
+            objectOut.writeObject(hash);
+            
+            objectOut.close();
+            fileOut.close();
+            
+            return true;
+            
+        } catch (FileNotFoundException e) {
+            System.out.println("Arq. não encontrado");
+            return false;
+        } catch (IOException e) {
+            System.out.println("Erro inicializando stream");
+            return false;
+        }
+    }
+    
+    // monta a tabela com a lista dada
+    private void montarTabela(ArrayList<Organizador> listaOrgs) {
+        DefaultTableModel modelo = new DefaultTableModel(new Object[] {"Nome", "Username", "Número Torneios", "Avaliação Média"}, 0);
+        
+        for (int i = 0 ; i < listaOrgs.size() ; i++) {
+            Object linha[] = {listaOrgs.get(i).getNome(), 
+                              listaOrgs.get(i).getUsername(), 
+                              listaOrgs.get(i).getTorneiosCriados().size(),
+                              listaOrgs.get(i).calculaAvaliação()};
+            modelo.addRow(linha);
+        }
+        
+        tblOrganizadores.setModel(modelo);
+        
+        tblOrganizadores.getColumnModel().getColumn(0).setPreferredWidth(50);
+        tblOrganizadores.getColumnModel().getColumn(1).setPreferredWidth(50);
+        tblOrganizadores.getColumnModel().getColumn(2).setPreferredWidth(50);
+    }
+    
+    private void estadoInicial() {
+        txtEndereco.setText("");
+        txtNome.setText("");
+        txtUsername.setText("");
+        
+        txtEndereco.setEnabled(true);
+        txtNome.setEnabled(true);
+        txtUsername.setEnabled(true);
+        btnPesquisar.setEnabled(true);
+        btnVoltar.setEnabled(true);
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -29,6 +127,13 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
         scrTabela = new javax.swing.JScrollPane();
         tblOrganizadores = new javax.swing.JTable();
         btnVoltar = new javax.swing.JButton();
+        lblNome = new javax.swing.JLabel();
+        txtNome = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
+        lblEndereco = new javax.swing.JLabel();
+        txtEndereco = new javax.swing.JTextField();
+        btnPesquisar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -36,20 +141,20 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
 
         tblOrganizadores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Nome", "Número Torneios", "Avaliação Média"
+                "Nome", "Username", "Número Torneios", "Avaliação Média"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Double.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -60,10 +165,34 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblOrganizadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblOrganizadoresMouseClicked(evt);
+            }
+        });
         scrTabela.setViewportView(tblOrganizadores);
 
         btnVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit32px.png"))); // NOI18N
         btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+
+        lblNome.setText("Nome");
+
+        lblUsername.setText("Username");
+
+        lblEndereco.setText("Endereço");
+
+        btnPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pesquisar32px.png"))); // NOI18N
+        btnPesquisar.setText("Pesquisar");
+        btnPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPesquisarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -72,24 +201,97 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
+                    .addComponent(scrTabela, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnVoltar)))
+                        .addComponent(btnVoltar))
+                    .addComponent(txtNome)
+                    .addComponent(txtUsername)
+                    .addComponent(txtEndereco)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNome)
+                            .addComponent(lblUsername)
+                            .addComponent(lblEndereco)
+                            .addComponent(btnPesquisar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(scrTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblNome)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblEndereco)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPesquisar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(scrTabela, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVoltar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null, "Deseja encerrar a busca?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        // 0 = sim, 1 = nao
+
+        if (resp == 0) {
+            new Admin().setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
+        // se aparece na caixa de texto, sera verificado se esta na string resultante
+        filtroOrganizadores = new ArrayList<>();
+        for (Organizador organizador : organizadores) {
+            if (organizador.getNome().contains(txtNome.getText()) 
+                    && organizador.getUsername().contains(txtUsername.getText()) 
+                    && organizador.getEndereco().contains(txtEndereco.getText())) {
+                filtroOrganizadores.add(organizador);
+            }
+        }
+        
+        if (filtroOrganizadores.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nenhum organizador corresponde a esses parâmetros!", "Falha", JOptionPane.WARNING_MESSAGE);
+        } else {
+            montarTabela(filtroOrganizadores);
+        }
+    }//GEN-LAST:event_btnPesquisarActionPerformed
+
+    private void tblOrganizadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblOrganizadoresMouseClicked
+        int idx = tblOrganizadores.getSelectedRow();
+        
+        if (idx >= 0 && idx < filtroOrganizadores.size()) {
+            Organizador organizador = filtroOrganizadores.get(idx);
+            int resp = JOptionPane.showConfirmDialog(null, "Deseja excluir o organizador " + organizador.getUsername() + " do sistema?", "Confirmar", JOptionPane.YES_NO_OPTION);
+                // 0 = sim, 1 = nao
+
+                if (resp == 0) {
+                    hashUsers.remove(organizador.getUsername());
+                    boolean deuCerto = armazenarHash(hashUsers);
+                    if (deuCerto) {
+                        JOptionPane.showMessageDialog(null, "Organizador excluído com sucesso!", "Sucesso", JOptionPane.PLAIN_MESSAGE);
+                        // refaz a lista e já exibe a modificada, sem precisar ler o arquivo novamente
+                        montarLista(hashUsers);
+                        montarTabela(organizadores);
+                    }
+                }
+        }
+    }//GEN-LAST:event_tblOrganizadoresMouseClicked
 
     /**
      * @param args the command line arguments
@@ -127,8 +329,15 @@ public class BuscaOrganizadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnPesquisar;
     private javax.swing.JButton btnVoltar;
+    private javax.swing.JLabel lblEndereco;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JScrollPane scrTabela;
     private javax.swing.JTable tblOrganizadores;
+    private javax.swing.JTextField txtEndereco;
+    private javax.swing.JTextField txtNome;
+    private javax.swing.JTextField txtUsername;
     // End of variables declaration//GEN-END:variables
 }

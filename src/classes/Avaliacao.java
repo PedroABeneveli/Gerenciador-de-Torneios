@@ -23,7 +23,13 @@ public class Avaliacao implements Serializable {
     private Torneio torneio;
     private Equipe equipe;
     
-    // Construtor
+    // Construtores
+
+    public Avaliacao(Torneio torneio, Equipe equipe) {
+        this.torneio = torneio;
+        this.equipe = equipe;
+    }
+    
     public Avaliacao(double regras, double organizacao, double trapaca, double jogadores, Torneio torneio, Equipe equipe) {
         this.regras = regras;
         this.organizacao = organizacao;

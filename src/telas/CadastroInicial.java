@@ -117,6 +117,8 @@ public class CadastroInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnGroupTecnico = new javax.swing.ButtonGroup();
+        btnGroupEquipe = new javax.swing.ButtonGroup();
         lblTitulo = new javax.swing.JLabel();
         lblNome = new javax.swing.JLabel();
         txtNome = new javax.swing.JTextField();
@@ -148,6 +150,8 @@ public class CadastroInicial extends javax.swing.JFrame {
         btnSair = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Cadastro de Usuário");
+        setIconImage(new javax.swing.ImageIcon(getClass().getResource("/imagens/trofeu32px.png")).getImage());
 
         lblTitulo.setFont(new java.awt.Font("Ubuntu", 1, 48)); // NOI18N
         lblTitulo.setText("Cadastro Inicial");
@@ -205,8 +209,10 @@ public class CadastroInicial extends javax.swing.JFrame {
             }
         });
 
+        btnGroupTecnico.add(rbtNaoTecnico);
         rbtNaoTecnico.setText("Não");
 
+        btnGroupTecnico.add(rbtSimTecnico);
         rbtSimTecnico.setText("Sim");
         rbtSimTecnico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -214,6 +220,7 @@ public class CadastroInicial extends javax.swing.JFrame {
             }
         });
 
+        btnGroupEquipe.add(rbtSimFreeAgent);
         rbtSimFreeAgent.setText("Sim");
         rbtSimFreeAgent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -221,6 +228,7 @@ public class CadastroInicial extends javax.swing.JFrame {
             }
         });
 
+        btnGroupEquipe.add(rbtNaoFreeAgent);
         rbtNaoFreeAgent.setText("Não");
 
         javax.swing.GroupLayout pnlCadastroJogadorLayout = new javax.swing.GroupLayout(pnlCadastroJogador);
@@ -401,6 +409,7 @@ public class CadastroInicial extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarOrganizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarOrganizadorActionPerformed
@@ -674,6 +683,8 @@ public class CadastroInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrarOrganizador;
     private javax.swing.JButton btnCancelarCadastroJogador;
     private javax.swing.JButton btnFinalizarCadastroJogador;
+    private javax.swing.ButtonGroup btnGroupEquipe;
+    private javax.swing.ButtonGroup btnGroupTecnico;
     private javax.swing.JButton btnSair;
     private javax.swing.JFormattedTextField frmCPF;
     private javax.swing.JFormattedTextField frmDataDeNascimento;
