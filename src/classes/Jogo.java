@@ -23,21 +23,10 @@ public class Jogo implements Serializable {
     private Date dataDeCriacao;
     private ArrayList<String> mapas;
     private String condicaoVitoria;
-    private ArrayList<Torneio> torneios;
     
     // Construtores
     public Jogo() {
         
-    }
-
-    public Jogo(String nome, String criadora, String publicadora, Date dataDeCriacao, ArrayList<String> mapas, String condicaoVitoria, ArrayList<Torneio> torneios) {
-        this.nome = nome;
-        this.criadora = criadora;
-        this.publicadora = publicadora;
-        this.dataDeCriacao = dataDeCriacao;
-        this.mapas = mapas;
-        this.condicaoVitoria = condicaoVitoria;
-        this.torneios = torneios;
     }
     
     public Jogo(String nome, String criadora, String publicadora, Date dataDeCriacao, ArrayList<String> mapas, String condicaoVitoria) {
@@ -97,14 +86,6 @@ public class Jogo implements Serializable {
 
     public void setCondicaoVitoria(String condicaoVitoria) {
         this.condicaoVitoria = condicaoVitoria;
-    }
-
-    public ArrayList<Torneio> getTorneios() {
-        return torneios;
-    }
-
-    public void setTorneios(ArrayList<Torneio> torneios) {
-        this.torneios = torneios;
     }
     
 }

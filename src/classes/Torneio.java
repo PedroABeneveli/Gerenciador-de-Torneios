@@ -25,8 +25,8 @@ public class Torneio implements Serializable {
     private int numeroDeEtapas;
     private boolean ativo = true;       // um torneio sempre eh criado ativo
     private Jogo jogo;
-    private ArrayList<Partida> partidas;
-    private ArrayList<Avaliacao> avaliacoes;
+    private ArrayList<Partida> partidas = new ArrayList<>();
+    private ArrayList<Avaliacao> avaliacoes = new ArrayList<>();
     
     // Construtores
     public Torneio() {

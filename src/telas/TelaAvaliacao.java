@@ -165,7 +165,7 @@ public class TelaAvaliacao extends javax.swing.JFrame {
         } else if (Integer.parseInt(frmRegras.getText()) > 10 || Integer.parseInt(frmOrganizacao.getText()) > 10 || Integer.parseInt(frmTrapaca.getText()) > 10 || Integer.parseInt(frmJogadores.getText()) > 10) {
             JOptionPane.showMessageDialog(null, "Campos de avaliação não foram preenchidos corretamente", "Não foi possível enviar a avaliação", JOptionPane.ERROR_MESSAGE);
         } else {
-            avaliacao = new Avaliacao();
+            //TODO
         }
     }//GEN-LAST:event_btnEnviarAvaliacaoActionPerformed
 

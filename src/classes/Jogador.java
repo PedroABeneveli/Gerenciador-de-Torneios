@@ -23,7 +23,7 @@ public class Jogador extends Pessoa {
     private boolean tecnico;
     private ArrayList<Integer> numeroVitoriasDerrotas = new ArrayList<>(Arrays.asList(1, 1));
     private String ranqueamento;
-    private ArrayList<Equipe> equipes;
+    private ArrayList<Equipe> equipes = new ArrayList<>();
     
     // Conatrutores
     public Jogador() {
